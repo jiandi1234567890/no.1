@@ -15,6 +15,7 @@
 #import "messageViewController.h"
 #import "registerViewController.h"
 #import "findcodeViewController.h"
+#import "addressViewController.h"
 #define ScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 
@@ -40,7 +41,7 @@
     _login=[[NSUserDefaults standardUserDefaults] integerForKey:@"login"];
     //不计算navigationbar高度，解决scrollerview位置偏移问题
     self.navigationController.navigationBar.translucent=NO;
-    
+    self.tabBarController.tabBar.translucent=NO;
     
     
     firstlabelArray=@[@0,@"我的订单",@0,@"我的资产",@0,@"收货地址",@"密码修改",@"邀请人",@"帮助中心",@"关于我们",@0];
@@ -53,10 +54,14 @@
         self.navigationItem.title=@"会员中心";
         
         
-        
+        //更改返回键样式
+        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = item;
+
         
         //tableviewcell初始化
-        tableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-45) style:UITableViewStylePlain];
+        tableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-90) style:UITableViewStylePlain];
         tableview.backgroundColor=[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.00];
         //隐藏分割线
         tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -437,7 +442,13 @@
             ;
             break;
         case 5:
-             NSLog(@"收货地址");
+        { NSLog(@"收货地址");
+            
+            addressViewController *addressVC=[addressViewController new];
+            addressVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:addressVC animated:YES];
+            
+        }
             break;
         case 6:
              NSLog(@"密码修改");

@@ -145,6 +145,7 @@
     //价格
     self.pricelabel=[[UILabel alloc]init];
     self.pricelabel.backgroundColor=[UIColor whiteColor];
+    self.pricelabel.textColor=[UIColor orangeColor];
     self.pricelabel.font=[UIFont systemFontOfSize:15];
     self.pricelabel.textAlignment=NSTextAlignmentRight;
     self.pricelabel.numberOfLines=0;
@@ -161,7 +162,7 @@
     [self addSubview:self.deletebutton];
     
    
-    UILabel *label=[UILabel new];
+    UILabel *label=[[UILabel alloc]init];
     label.backgroundColor=[UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.00];
     [self addSubview:label];
 
@@ -251,7 +252,9 @@
     
     
     
-   [self setupAutoHeightWithBottomView:self.deletebutton bottomMargin:0];
+    
+    
+  // [self setupAutoHeightWithBottomView:self.deletebutton bottomMargin:0];
     
     
 }

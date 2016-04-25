@@ -125,7 +125,7 @@
 //购物车按键
 -(void)Descriptionightbutton
 {
-    shoppingcartViewController *spVC=[shoppingcartViewController new];
+       shoppingcartViewController *spVC=[shoppingcartViewController new];
     spVC.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:spVC animated:YES];
     
@@ -166,7 +166,18 @@
 
 //加入购物车按键
 -(void)putItinshoppingcartClick
+
 {
+    
+    
+    NSInteger number=[[NSUserDefaults standardUserDefaults]integerForKey:@"addshoppingcart"];
+    if(number){
+        number+=1;
+        [[NSUserDefaults standardUserDefaults]setInteger:number forKey:@"addshoppingcart"];
+    }else{
+        [[NSUserDefaults standardUserDefaults]setInteger:1 forKey:@"addshoppingcart"];
+    }
+
     [self showMessage:@"成功加入购物车"];
     
     

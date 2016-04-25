@@ -62,7 +62,10 @@
 
 //展示模型
 -(void)creatData {
-    for (int i = 0; i < 3; i++) {
+  
+    
+    NSInteger number=[[NSUserDefaults standardUserDefaults]integerForKey:@"addshoppingcart"];
+    for (int i = 0; i < number; i++) {
         shoppingcartModel *model = [[shoppingcartModel alloc]init];
         
         model.namestr = @"田字一号筒骨";
@@ -74,7 +77,15 @@
         [dataarray addObject:model];
         }
     
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
     
+    [dataarray removeAllObjects];
+    [self creatData];
+    [tableview reloadData];
 }
 
 - (void)viewDidLoad {
@@ -85,7 +96,8 @@
     sellectarray=[[NSMutableArray alloc]init];
     
     dataarray= [[NSMutableArray alloc]init];
-    [self creatData];
+    
+   
     
     
     
@@ -198,6 +210,9 @@
     .leftSpaceToView(allselectlabel,10)
     .heightIs(45);
     
+    
+     [self creatData];
+     [tableview reloadData];
 }
 
 
@@ -222,8 +237,10 @@
       
     }
    
-    [tableview reloadData];
+    
     [self reloadprice];
+    [tableview reloadData];
+    
    
    
 }
@@ -363,12 +380,17 @@
         
         shoppingcartModel *model = [dataarray objectAtIndex:indexPath.row];
         
+        NSLog(@"%lu",(unsigned long)dataarray.count);
         [dataarray removeObjectAtIndex:indexPath.row];
-        //    删除
+        
+        //删除
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         
+
+        //NSInteger number=dataarray.count;
         
+            [[NSUserDefaults standardUserDefaults] setInteger:dataarray.count forKey:@"addshoppingcart"];
        
         //判断是否选择
         if ([sellectarray containsObject:model]) {
@@ -388,21 +410,14 @@
         if(dataarray.count<1){
             allselectbutton.selected=NO;
         }
-
         
-
-        
-        
-        
+        [tableview reloadData];
     };
-    
     
      [cell loaddataWith:[dataarray objectAtIndex:indexPath.row]];
     return cell;
     
 }
-
-
 
 
 
