@@ -440,11 +440,13 @@
         for(addressModel *model1 in array){
             if([model1 isEqualToaddress:model]){
                 [AddressArray removeObject:model1];
+                
             }
         }
        
         
         [AddressArray removeObject:model];
+        
       data = [NSKeyedArchiver archivedDataWithRootObject:AddressArray];
         [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"address"];
          [self.navigationController popViewControllerAnimated:YES];

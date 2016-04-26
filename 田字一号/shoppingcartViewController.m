@@ -11,6 +11,7 @@
 #import "shoppingcartModel.h"
 #import "UIView+SDAutoLayout.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
+#import "confirmorderViewController.h"
 
 @interface shoppingcartViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -80,11 +81,29 @@
 }
 
 
+
+//结算按键
+-(void)settlementbuttonClick{
+    
+    if(sellectarray.count>0){
+    
+    confirmorderViewController *confirmVC=[[confirmorderViewController alloc]init];
+    confirmVC.hidesBottomBarWhenPushed=YES;
+    
+    [self.navigationController pushViewController:confirmVC animated:YES];
+    }else{
+        [self showMessage:@"还未选择商品，请勾选商品"];
+    }
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+
     [dataarray removeAllObjects];
     [self creatData];
+    
+    
     [tableview reloadData];
 }
 
@@ -106,6 +125,11 @@
     //不计算navigationbar高度，解决scrollerview位置偏移问题
     self.navigationController.navigationBar.translucent=NO;
     self.tabBarController.tabBar.translucent=NO;
+    
+    //更改返回键样式
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = item;
     
     tableview=[[UITableView alloc]init];
     tableview.delegate=self;
@@ -158,7 +182,7 @@
     settlementbutton.backgroundColor=[UIColor orangeColor];
     [settlementbutton setTitle:@"结算" forState:UIControlStateNormal];
     [settlementbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
+    [settlementbutton addTarget:self action:@selector(settlementbuttonClick) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:settlementbutton];
     
     
@@ -248,12 +272,6 @@
 
 
 
-
-
-
-
-
-
 #pragma mark tableviewdatasoure
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -265,6 +283,12 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
+    NSString *string=[NSString stringWithFormat:@"%d",dataarray.count];
+    if([string isEqualToString:@"0"]){
+        string=nil;
+        
+    }
+    self.tabBarItem.badgeValue=string;
     
     return dataarray.count;
 }
@@ -290,6 +314,8 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     cell.isSelected=allselect;
+    
+    
     
     
     
@@ -415,12 +441,41 @@
     };
     
      [cell loaddataWith:[dataarray objectAtIndex:indexPath.row]];
+    
     return cell;
     
 }
 
 
 
+
+//按键提醒显示
+-(void)showMessage:(NSString *)message
+{
+    UIWindow * window = [UIApplication sharedApplication].keyWindow;
+    UIView *showview =  [[UIView alloc]init];
+    showview.backgroundColor = [UIColor blackColor];
+    showview.alpha = 0.8f;
+    showview.layer.cornerRadius = 5.0f;
+    showview.layer.masksToBounds = YES;
+    [window addSubview:showview];
+    
+    UILabel *label = [[UILabel alloc]init];
+    CGSize LabelSize=[message boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 999) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:20]} context:nil].size;
+    label.text = message;
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:18];
+    
+    showview.frame = CGRectMake(20, ([UIScreen mainScreen].bounds.size.height)/2,[UIScreen mainScreen].bounds.size.width-40, LabelSize.height+10);
+    label.frame = CGRectMake((CGRectGetMaxX(showview.frame)-LabelSize.width)/2, 5, LabelSize.width, LabelSize.height);
+    
+    [showview addSubview:label];
+    [UIView animateWithDuration:2.5 animations:^{showview.alpha=0.0f;}    completion:^(BOOL finished) {
+        [showview removeFromSuperview];
+    }];
+}
 
 
 

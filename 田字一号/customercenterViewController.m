@@ -16,6 +16,8 @@
 #import "registerViewController.h"
 #import "findcodeViewController.h"
 #import "addressViewController.h"
+#import "shareViewController.h"
+#import "helpViewController.h"
 #define ScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 
@@ -68,6 +70,8 @@
         
         tableview.delegate=self;
         tableview.dataSource=self;
+        
+        //tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         
         [self.view addSubview:tableview];
         
@@ -454,10 +458,22 @@
              NSLog(@"密码修改");
             break;
         case 7:
-             NSLog(@"邀请人");
+        { NSLog(@"邀请人");
+            
+            shareViewController *sharevc=[[shareViewController alloc]init];
+            sharevc.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:sharevc animated:YES];
+            
+        }
             break;
         case 8:
-             NSLog(@"帮助中心");
+        { NSLog(@"帮助中心");
+            helpViewController *helpVC=[[helpViewController alloc]init];
+            helpVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:helpVC animated:YES];
+            
+            
+        }
             break;
         case 9:
         {

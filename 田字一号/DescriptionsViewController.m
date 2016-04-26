@@ -8,6 +8,7 @@
 
 #import "DescriptionsViewController.h"
 #import "shoppingcartViewController.h"
+#import "confirmorderViewController.h"
 
 
 
@@ -161,6 +162,14 @@
 {
     NSLog(@"客服按键");
     
+    UIAlertController  *altc=[UIAlertController alertControllerWithTitle:@"" message:@"确定通过QQ联系客服么？" preferredStyle:UIAlertControllerStyleActionSheet];
+    [altc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil] ];
+    [altc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:altc animated:YES completion:nil];
+
+    
+    
+   
 }
 
 
@@ -189,6 +198,21 @@
 -(void)buyitbuttonClick
 {
     NSLog(@"立刻购买");
+    
+    NSInteger login=[[NSUserDefaults standardUserDefaults] integerForKey:@"login"];
+    
+    if(login==100){
+    confirmorderViewController *confirmVC=[[confirmorderViewController alloc]init];
+    confirmVC.hidesBottomBarWhenPushed=YES;
+    
+        [self.navigationController pushViewController:confirmVC animated:YES];
+    }else{
+        
+        [self.tabBarController setSelectedIndex:4];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+
+    }
+
 }
 
 

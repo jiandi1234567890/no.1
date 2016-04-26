@@ -222,7 +222,7 @@
     
     self.numlabel.sd_layout
     .bottomEqualToView(self.cutnumbutton)
-    .leftSpaceToView(self.cutnumbutton,0)
+    .leftSpaceToView(self.cutnumbutton,-0.5)
     .widthIs(30)
     .heightIs(25);
     
