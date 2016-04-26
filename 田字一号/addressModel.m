@@ -39,7 +39,7 @@
 
 -(BOOL)isEqualToaddress:(addressModel *)model{
     
-    if(model){
+    if(!model){
         return NO;
     }
    

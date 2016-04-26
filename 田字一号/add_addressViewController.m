@@ -15,7 +15,7 @@
 @interface add_addressViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *tableview;
-    BOOL step1,step2,step3,completion;
+    BOOL step1,step2,step3;
     NSString *provincestr;
     NSString *citystr;
     NSString *districtstr;
@@ -60,7 +60,7 @@
         NSString *path=[[NSBundle mainBundle]pathForResource:@"area.plist" ofType:nil];
         _dict = [[NSDictionary alloc] initWithContentsOfFile:path];
     }
-
+    
     return _dict;
 }
 //获得城市
@@ -148,26 +148,6 @@
     } else {
         self.districts = @[];
     }
-    
-}
-
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.navigationItem.title=@"收货地址管理";
-    self.view.backgroundColor=[UIColor whiteColor];
-    [self firstinitview];
-    completion=NO;
-    
-    self.provinces=[self getprovinces];
-    
-    tableview=[[UITableView alloc]init];
-    tableview.delegate=self;
-    tableview.dataSource=self;
-    tableview.hidden=YES;
-
     
 }
 
@@ -289,7 +269,28 @@
     [addbutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [addbutton addTarget:self action:@selector(addbuttonClikc) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addbutton];
-#pragma 控件约束
+    
+    
+    tableview=[[UITableView alloc]init];
+    tableview.delegate=self;
+    tableview.dataSource=self;
+    tableview.hidden=YES;
+    
+    //解决默认cell下划线偏移问题
+    if ([tableview respondsToSelector:@selector(setSeparatorInset:)]) {
+        
+        [tableview   setSeparatorInset:UIEdgeInsetsZero];
+        
+    }
+    
+    if ([tableview  respondsToSelector:@selector(setLayoutMargins:)]) {
+        
+        [tableview  setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    [self.view addSubview:tableview];
+    
+   #pragma 控件约束
     
     
     label1.sd_layout
@@ -377,8 +378,37 @@
     .rightSpaceToView(self.view,20)
     .heightIs(50)
     .widthIs(80);
+    
+    
+    tableview.sd_layout
+    .topSpaceToView(self.view,0)
+    .bottomSpaceToView(self.view,0)
+    .rightSpaceToView(self.view,0)
+    .leftSpaceToView(self.view,0);
 
+    
 }
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.navigationItem.title=@"收货地址管理";
+    self.view.backgroundColor=[UIColor whiteColor];
+   
+    self.completion=NO;
+    
+    //AddressArray=[[NSMutableArray alloc]init];
+    
+    self.provinces=[self getprovinces];
+    
+     [self firstinitview];
+    
+    
+   
+    
+}
+
+
 
 
 
@@ -387,31 +417,40 @@
     step1=YES;
     step2=NO;
     step3=NO;
+    [tableview reloadData];
     tableview.hidden=NO;
-   
-    [self.view addSubview:tableview];
-    //解决默认cell下划线偏移问题
-    if ([tableview respondsToSelector:@selector(setSeparatorInset:)]) {
-        
-        [tableview   setSeparatorInset:UIEdgeInsetsZero];
-        
-    }
-    
-    if ([tableview  respondsToSelector:@selector(setLayoutMargins:)]) {
-        
-        [tableview  setLayoutMargins:UIEdgeInsetsZero];
-    }
-    
-    tableview.sd_layout
-    .topSpaceToView(self.view,0)
-    .bottomSpaceToView(self.view,0)
-    .rightSpaceToView(self.view,0)
-    .leftSpaceToView(self.view,0);
-    
 }
 
 //删除按键
 -(void)deletebuttonClick{
+    
+    
+    if(self.completion){
+         NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
+         AddressArray=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+        
+    addressModel *model=[[addressModel alloc]init];
+    model.address=self.setaddress.titleLabel.text;
+    model.addressmore=self.textfield2.text;
+    model.name=self.textfield3.text;
+    model.phonenumber=self.textfield4.text;
+    model.postcode=self.textfield5.text;
+        
+        NSArray *array=[NSArray arrayWithArray:AddressArray];
+        for(addressModel *model1 in array){
+            if([model1 isEqualToaddress:model]){
+                [AddressArray removeObject:model1];
+            }
+        }
+       
+        
+        [AddressArray removeObject:model];
+      data = [NSKeyedArchiver archivedDataWithRootObject:AddressArray];
+        [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"address"];
+         [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    
     
 }
 
@@ -420,20 +459,37 @@
 -(void)addbuttonClikc{
     
     
-    if(completion&&self.textfield2.text.length>0&&self.textfield3.text.length>0&&self.textfield4.text.length>0&&self.textfield5.text.length>0){
+    if(self.completion&&self.textfield2.text.length>0&&self.textfield3.text.length>0&&self.textfield4.text.length>0&&self.textfield5.text.length>0){
         
+        BOOL success=YES;
+        NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
+        if(data!=nil){
+            AddressArray=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+       
+            addressModel *model=[[addressModel alloc]init];
+            model.address=self.setaddress.titleLabel.text;
+            model.addressmore=self.textfield2.text;
+            model.name=self.textfield3.text;
+            model.phonenumber=self.textfield4.text;
+            model.postcode=self.textfield5.text;
         
+         NSArray *array=[NSArray arrayWithArray:AddressArray];
+            for(addressModel *model1 in array){
+                if([model1 isEqualToaddress:model]){
+                    
+                   [AddressArray removeObject:model1];
+                    [self showMessage:@"地址重复，该地址未被保存"];
+                    success=NO;
+            
+                }
+            }
+            if(success){
+             [self showMessage:@"地址保存成功"];
+            }
+         [AddressArray addObject:model];
+        }
         
-        
-        addressModel *model=[[addressModel alloc]init];
-        model.address=self.setaddress.titleLabel.text;
-        model.addressmore=self.textfield2.text;
-        model.name=self.textfield3.text;
-        model.phonenumber=self.textfield4.text;
-        model.postcode=self.textfield5.text;
-        
-        
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
+        data = [NSKeyedArchiver archivedDataWithRootObject:AddressArray];
         [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"address"];
         
         [self.navigationController popViewControllerAnimated:YES];
@@ -448,9 +504,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(step1){
-        
         return self.provinces.count;
-    
     }else if(step2){
         return self.citys.count;
     }else if(step3){
@@ -467,7 +521,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID=@"cell1";
+    static NSString *ID=@"celladdaddress";
     
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:ID];
     
@@ -488,15 +542,11 @@
         
     }
     
-    
-    
-
-    
     cell.textLabel.textAlignment=NSTextAlignmentCenter;
     
     if(step1){
         cell.textLabel.text=self.provinces[indexPath.row];
-           }else if(step2){
+    }else if(step2){
         cell.textLabel.text=self.citys[indexPath.row];
     }else if(step3){
         cell.textLabel.text=self.districts[indexPath.row];
@@ -524,7 +574,7 @@
         step2=NO;
         step3=YES;
         [self refrshOfDistrictsWithProvincsKey:provincestr CitysKey:citystr];
-
+        
     }else if(step3){
         
         districtstr=self.districts[indexPath.row];
@@ -533,7 +583,7 @@
         step1=YES;
         step2=NO;
         step3=NO;
-        completion=YES;
+        self.completion=YES;
         tableview.hidden=YES;
     }
     
@@ -541,6 +591,37 @@
     [tableview reloadData];
     
     
+}
+
+
+
+
+//按键提醒显示
+-(void)showMessage:(NSString *)message
+{
+    UIWindow * window = [UIApplication sharedApplication].keyWindow;
+    UIView *showview =  [[UIView alloc]init];
+    showview.backgroundColor = [UIColor blackColor];
+    showview.alpha = 0.8f;
+    showview.layer.cornerRadius = 5.0f;
+    showview.layer.masksToBounds = YES;
+    [window addSubview:showview];
+    
+    UILabel *label = [[UILabel alloc]init];
+    CGSize LabelSize=[message boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 999) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:20]} context:nil].size;
+    label.text = message;
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:18];
+    
+    showview.frame = CGRectMake(20, ([UIScreen mainScreen].bounds.size.height)/2,[UIScreen mainScreen].bounds.size.width-40, LabelSize.height+10);
+    label.frame = CGRectMake((CGRectGetMaxX(showview.frame)-LabelSize.width)/2, 5, LabelSize.width, LabelSize.height);
+    
+    [showview addSubview:label];
+    [UIView animateWithDuration:2 animations:^{showview.alpha=0.0f;}    completion:^(BOOL finished) {
+        [showview removeFromSuperview];
+    }];
 }
 
 

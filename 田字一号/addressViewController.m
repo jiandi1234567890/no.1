@@ -24,6 +24,9 @@
 @implementation addressViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+    
+    [addressArray removeAllObjects];
     [self creatdata];
     [tableview reloadData];
 }
@@ -83,14 +86,13 @@
 
 
 -(void)creatdata{
+    
+    
     NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
-    
-   addressModel *model=[NSKeyedUnarchiver unarchiveObjectWithData:data];
-
-    
-        [addressArray addObject:model];
-    NSLog(@"%lu",(unsigned long)addressArray.count);
-    
+    if(data){
+     addressArray=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
+          
 }
 
 #pragma mark tableviewdatasoure
@@ -122,8 +124,19 @@
 #pragma mark tableviewdelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+     addressModel *model=addressArray[indexPath.row];
+     add_addressViewController *addVC=[[add_addressViewController alloc]init];
     
-    
+    addVC.hidesBottomBarWhenPushed=YES;
+    addVC.view.hidden=NO;
+    //addVC.view;
+    [addVC.setaddress setTitle:model.address forState:UIControlStateNormal];
+    addVC.textfield2.text=model.addressmore;
+    addVC.textfield3.text=model.name;
+    addVC.textfield4.text=model.phonenumber;
+    addVC.textfield5.text=model.postcode;
+    addVC.completion=YES;
+    [self.navigationController pushViewController:addVC animated:YES];
     
 }
 
@@ -133,6 +146,7 @@
     
     add_addressViewController *addNewVC=[[add_addressViewController alloc]init];
     addNewVC.hidesBottomBarWhenPushed=YES;
+   
     [self.navigationController pushViewController:addNewVC animated:YES];
     
     

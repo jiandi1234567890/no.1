@@ -14,5 +14,6 @@
 @property(nonatomic,strong) UITextField *textfield3;
 @property(nonatomic,strong) UITextField *textfield4;
 @property(nonatomic,strong) UITextField *textfield5;
+@property(nonatomic) BOOL completion;
 
 @end
