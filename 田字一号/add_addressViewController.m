@@ -539,15 +539,10 @@
     
     //解决默认cell下划线偏移问题
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        
         [cell setSeparatorInset:UIEdgeInsetsZero];
-        
     }
-    
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        
         [cell setLayoutMargins:UIEdgeInsetsZero];
-        
     }
     
     cell.textLabel.textAlignment=NSTextAlignmentCenter;

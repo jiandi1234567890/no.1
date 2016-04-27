@@ -103,19 +103,27 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    return 1;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return addressArray.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *ID=@"celladdress";
-    addressTableViewCell *cell=[tableview dequeueReusableCellWithIdentifier:ID];
+    addressTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:ID];
     if(!cell){
         cell=[[addressTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
        
-    [cell loadDataWithModel:addressArray[indexPath.row]];
+    [cell loadDataWithModel:addressArray[indexPath.section]];
     
     return cell;
 }

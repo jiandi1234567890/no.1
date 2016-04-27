@@ -15,5 +15,6 @@
 @property(nonatomic,strong)  UILabel * address;
 @property(nonatomic,strong) UILabel * phonenumber;
 @property(nonatomic,strong) UIImageView * imageview;
+
 -(void)loadDataWithModel:(addressModel *)model;
 @end

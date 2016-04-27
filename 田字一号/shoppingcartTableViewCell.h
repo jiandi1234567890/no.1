@@ -38,5 +38,7 @@ typedef void(^numberchange)  ();
 //删除按键
 @property(nonatomic,strong) UIButton * deletebutton;
 
+
+
 -(void) loaddataWith:(shoppingcartModel *)model;
 @end

@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface shoppingcartModel : NSObject
+@interface shoppingcartModel : NSObject<NSCoding>
 @property(nonatomic,copy) NSString *namestr;
 @property(nonatomic,copy) NSString *pricestr;
 @property(nonatomic,assign)  NSInteger  number;
-@property(nonatomic,retain)  UIImage * image;
+@property(nonatomic,copy)  NSString * imagename;
 @property (nonatomic,assign)BOOL isSelected;
 
 @end

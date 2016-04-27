@@ -78,7 +78,7 @@
 
 -(void)loaddataWith:(shoppingcartModel *)model
 {
-    self.imageview.image=model.image;
+    self.imageview.image=[UIImage imageNamed:model.imagename];
     self.pricelabel.text=[NSString stringWithFormat:@"¥ 23.00\nX %ld",(long)model.number];
     self.numlabel.text=[NSString stringWithFormat:@"%ld",(long)model.number];
     self.namelabel.text=model.namestr;
@@ -161,28 +161,12 @@
     [self.deletebutton addTarget:self action:@selector(deletebuttonClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.deletebutton];
     
-   
-    UILabel *label=[[UILabel alloc]init];
-    label.backgroundColor=[UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.00];
-    [self addSubview:label];
-
     
     //添加约束
     
     
     [self.contentView sd_addSubviews:@[self.selectbutton,self.imageview,self.namelabel,self.cutnumbutton,self.numlabel,self.addnumbutton,self.pricelabel,self.deletebutton]];
 
-    
-    label.sd_layout
-    .topSpaceToView(self,0)
-    .leftSpaceToView(self,0)
-    .rightSpaceToView(self,0)
-    .heightIs(10);
-    
-    self.contentView.sd_layout
-    .topSpaceToView(label,0);
-    
-    
     
     
    //选中按键

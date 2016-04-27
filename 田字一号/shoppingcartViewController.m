@@ -72,7 +72,7 @@
         model.namestr = @"田字一号筒骨";
         model.number =1;
         //model.pricestr = [NSString stringWithFormat:@"¥ 23.00\nX %ld",(long)model.number];
-        model.image = [UIImage imageNamed:@"pic_tj1.jpg"];
+        model.imagename =@"pic_tj1.jpg";
        
         
         [dataarray addObject:model];
@@ -89,8 +89,14 @@
     
     confirmorderViewController *confirmVC=[[confirmorderViewController alloc]init];
     confirmVC.hidesBottomBarWhenPushed=YES;
-    
     [self.navigationController pushViewController:confirmVC animated:YES];
+      
+        
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:sellectarray];
+        [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"shoppingthings"];
+
+        NSLog(@"%@",sellectarray);
+        
     }else{
         [self showMessage:@"还未选择商品，请勾选商品"];
     }
@@ -99,11 +105,16 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-
+    
+    //每次进入购物车都将选中状态取消
+    allselect=NO;
+    allselectbutton.selected=NO;
+    [sellectarray removeAllObjects];
+    
+    
+    
     [dataarray removeAllObjects];
     [self creatData];
-    
-    
     [tableview reloadData];
 }
 
@@ -275,30 +286,33 @@
 #pragma mark tableviewdatasoure
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (95+10);
+    return 95;
 
-    
   }
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    NSString *string=[NSString stringWithFormat:@"%d",dataarray.count];
+    NSString *string=[NSString stringWithFormat:@"%ld",dataarray.count];
     if([string isEqualToString:@"0"]){
         string=nil;
         
     }
     self.tabBarItem.badgeValue=string;
     
+    return 1;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return dataarray.count;
 }
 
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    
-    return 1;
+    return 10;
 }
+
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -319,7 +333,7 @@
     
     
     
-    if([sellectarray containsObject:[dataarray objectAtIndex:indexPath.row]]){
+    if([sellectarray containsObject:[dataarray objectAtIndex:indexPath.section]]){
         cell.isSelected=YES;
     
     }
@@ -406,7 +420,6 @@
         
         shoppingcartModel *model = [dataarray objectAtIndex:indexPath.row];
         
-        NSLog(@"%lu",(unsigned long)dataarray.count);
         [dataarray removeObjectAtIndex:indexPath.row];
         
         //删除

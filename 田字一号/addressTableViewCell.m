@@ -12,9 +12,8 @@
 
 
 @implementation addressTableViewCell
-{
-    UILabel *label;
-}
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -52,21 +51,11 @@
         self.imageview.image=[UIImage imageNamed:@"icon_dzmore.png"];
         [self addSubview:self.imageview];
         
-        label=[[UILabel alloc]init];
-        label.backgroundColor=[UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1.00];
-        [self addSubview:label];
+       
         
            [self.contentView sd_addSubviews:@[self.name,self.phonenumber,self.address,self.imageview]];
         
         
-        label.sd_layout
-        .topSpaceToView(self,0)
-        .rightSpaceToView(self,0)
-        .leftSpaceToView(self,0)
-        .heightIs(10);
-        
-        self.contentView.sd_layout
-        .topSpaceToView(label,0);
         
         
         self.name.sd_layout

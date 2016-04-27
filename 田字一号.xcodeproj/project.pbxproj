@@ -168,6 +168,8 @@
 		D8D658C11CB3484A003A6611 /* myordersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D658C01CB3484A003A6611 /* myordersViewController.m */; };
 		D8D658C41CB360BE003A6611 /* DescriptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D658C31CB360BE003A6611 /* DescriptionsViewController.m */; };
 		D8F7C9EF1CCF4F8700F9E21A /* helpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7C9EE1CCF4F8700F9E21A /* helpViewController.m */; };
+		D8F7C9F21CD082A500F9E21A /* peisongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7C9F11CD082A500F9E21A /* peisongTableViewCell.m */; };
+		D8F7C9F51CD082F100F9E21A /* ordersettlementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7C9F41CD082F100F9E21A /* ordersettlementTableViewCell.m */; };
 		D8F971201CBC86D60075891A /* customer3TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F9711F1CBC86D60075891A /* customer3TableViewCell.m */; };
 		D8F971241CBC95160075891A /* signoutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F971231CBC95160075891A /* signoutTableViewCell.m */; };
 		D8F971271CBC9DAA0075891A /* titleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F971261CBC9DAA0075891A /* titleTableViewCell.m */; };
@@ -388,6 +390,10 @@
 		D8D658C31CB360BE003A6611 /* DescriptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionsViewController.m; sourceTree = "<group>"; };
 		D8F7C9ED1CCF4F8700F9E21A /* helpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpViewController.h; sourceTree = "<group>"; };
 		D8F7C9EE1CCF4F8700F9E21A /* helpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpViewController.m; sourceTree = "<group>"; };
+		D8F7C9F01CD082A500F9E21A /* peisongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = peisongTableViewCell.h; sourceTree = "<group>"; };
+		D8F7C9F11CD082A500F9E21A /* peisongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = peisongTableViewCell.m; sourceTree = "<group>"; };
+		D8F7C9F31CD082F100F9E21A /* ordersettlementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ordersettlementTableViewCell.h; sourceTree = "<group>"; };
+		D8F7C9F41CD082F100F9E21A /* ordersettlementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ordersettlementTableViewCell.m; sourceTree = "<group>"; };
 		D8F9711E1CBC86D60075891A /* customer3TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customer3TableViewCell.h; sourceTree = "<group>"; };
 		D8F9711F1CBC86D60075891A /* customer3TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customer3TableViewCell.m; sourceTree = "<group>"; };
 		D8F971221CBC95160075891A /* signoutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = signoutTableViewCell.h; sourceTree = "<group>"; };
@@ -747,6 +753,10 @@
 			children = (
 				D824CFB71CCF1D63005FF9B1 /* confirmorderViewController.h */,
 				D824CFB81CCF1D63005FF9B1 /* confirmorderViewController.m */,
+				D8F7C9F01CD082A500F9E21A /* peisongTableViewCell.h */,
+				D8F7C9F11CD082A500F9E21A /* peisongTableViewCell.m */,
+				D8F7C9F31CD082F100F9E21A /* ordersettlementTableViewCell.h */,
+				D8F7C9F41CD082F100F9E21A /* ordersettlementTableViewCell.m */,
 			);
 			name = confirmorder;
 			sourceTree = "<group>";
@@ -1026,6 +1036,7 @@
 				D89F24251CBD1DD80005B018 /* registerViewController.m in Sources */,
 				D849B8F21CCDA8E500414E4E /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				D849B9081CCE09A800414E4E /* addressModel.m in Sources */,
+				D8F7C9F51CD082F100F9E21A /* ordersettlementTableViewCell.m in Sources */,
 				D849B8EA1CCDA8B300414E4E /* shoppingcartModel.m in Sources */,
 				D8D4960B1CBB30D300ED7ACD /* customer1TableViewCell.m in Sources */,
 				D89F24221CBD1D9C0005B018 /* findcodeViewController.m in Sources */,
@@ -1033,6 +1044,7 @@
 				D824CFB91CCF1D63005FF9B1 /* confirmorderViewController.m in Sources */,
 				D87EB7461CAAB742007A0E81 /* labelCollectionViewCell.m in Sources */,
 				D809D3BD1CA8F03000E5685E /* sortViewController.m in Sources */,
+				D8F7C9F21CD082A500F9E21A /* peisongTableViewCell.m in Sources */,
 				D8F971241CBC95160075891A /* signoutTableViewCell.m in Sources */,
 				D849B9001CCDD6CE00414E4E /* addressViewController.m in Sources */,
 				D849B9031CCDE19D00414E4E /* add_addressViewController.m in Sources */,
