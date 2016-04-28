@@ -18,6 +18,7 @@
 #import "addressViewController.h"
 #import "shareViewController.h"
 #import "helpViewController.h"
+#import "myordersViewController.h"
 #define ScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 
@@ -325,7 +326,7 @@
         
         if(!cell)
         {
-            cell=[[titleTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID2];
+            cell=[[titleTableViewCell alloc]init];
         }
         
         //取消cell选中状态
@@ -344,11 +345,11 @@
         
     }
     else if(indexPath.section==2){
-        customer2TableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:ID];
+        customer2TableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
         
         if(!cell)
         {
-            cell=[[customer2TableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            cell=[[customer2TableViewCell alloc]init];
         }
         
         [cell.button1 addTarget:self action:@selector(chosebutton:) forControlEvents:UIControlEventTouchUpInside];
@@ -389,7 +390,7 @@
         
         if(!cell)
         {
-            cell=[[signoutTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID2];
+            cell=[[signoutTableViewCell alloc]init];
         }
         //取消cell选中状态
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -434,7 +435,13 @@
            ;
             break;
         case 1://我的订单
-            NSLog(@"我的订单");
+        {NSLog(@"我的订单");
+        
+            myordersViewController *myorder=[[myordersViewController alloc]init];
+            myorder.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myorder animated:YES];
+        
+        }
             break;
         case 2:
             ;

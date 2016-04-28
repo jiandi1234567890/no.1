@@ -9,6 +9,7 @@
 #import "DescriptionsViewController.h"
 #import "shoppingcartViewController.h"
 #import "confirmorderViewController.h"
+#import "shoppingcartModel.h"
 
 
 
@@ -202,6 +203,19 @@
     NSInteger login=[[NSUserDefaults standardUserDefaults] integerForKey:@"login"];
     
     if(login==100){
+        
+        shoppingcartModel *model = [[shoppingcartModel alloc]init];
+        
+        model.namestr = @"田字一号筒骨";
+        model.number =1;
+        //model.pricestr = [NSString stringWithFormat:@"¥ 23.00\nX %ld",(long)model.number];
+        model.imagename =@"pic_tj1.jpg";
+        
+        NSMutableArray *array=[[NSMutableArray alloc]init];
+        [array addObject:model];
+        
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:array];
+        [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"shoppingthings"];
     confirmorderViewController *confirmVC=[[confirmorderViewController alloc]init];
     confirmVC.hidesBottomBarWhenPushed=YES;
     

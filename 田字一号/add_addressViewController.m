@@ -271,6 +271,18 @@
     [self.view addSubview:addbutton];
     
     
+    //设为默认按键
+    self.addresstofirst=[UIButton buttonWithType:UIButtonTypeSystem];
+    [self.addresstofirst setTitle:@"设为默认" forState:UIControlStateNormal];
+    [self.addresstofirst setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.addresstofirst.backgroundColor=[UIColor orangeColor];
+    self.addresstofirst.layer.cornerRadius=5;
+    self.addresstofirst.layer.masksToBounds=YES;
+    [self.addresstofirst addTarget:self action:@selector(addresstofirstClick) forControlEvents:UIControlEventTouchUpInside];
+    self.addresstofirst.hidden=YES;
+    [self.view addSubview:self.addresstofirst];
+    
+    
     tableview=[[UITableView alloc]init];
     tableview.delegate=self;
     tableview.dataSource=self;
@@ -359,6 +371,12 @@
     .heightIs(labelheight);
     
     
+    self.addresstofirst.sd_layout
+    .topSpaceToView(self.textfield5,25)
+    .rightEqualToView(self.textfield5)
+    .heightIs(30)
+    .widthIs(85);
+    
     labelline.sd_layout
     .bottomSpaceToView(self.view,65)
     .rightSpaceToView(self.view,0)
@@ -408,7 +426,46 @@
     
 }
 
-
+//设为默认按键
+-(void)addresstofirstClick{
+    
+    if(self.completion&&self.textfield2.text.length>0&&self.textfield3.text.length>0&&self.textfield4.text.length>0&&self.textfield5.text.length>0){
+       
+        NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
+        
+        NSArray *array=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+        AddressArray = [[NSMutableArray alloc]initWithArray:array];
+        
+        addressModel *model=[[addressModel alloc]init];
+        model.address=self.setaddress.titleLabel.text;
+        model.addressmore=self.textfield2.text;
+        model.name=self.textfield3.text;
+        model.phonenumber=self.textfield4.text;
+        model.postcode=self.textfield5.text;
+        
+        
+        for(addressModel *model1 in array){
+            if([model1 isEqualToaddress:model]){
+                
+                [AddressArray removeObject:model1];
+            }
+        }
+        [AddressArray insertObject:model atIndex:0];
+        data = [NSKeyedArchiver archivedDataWithRootObject:AddressArray];
+        
+        
+        [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"address"];
+        
+        [self showMessage:@"已设置为默认地址"];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }else{
+        [self showMessage:@"保存失败，请完善地址"];
+    }
+ 
+    
+}
 
 
 
@@ -424,6 +481,12 @@
 //删除按键
 -(void)deletebuttonClick{
     
+    
+//     [AddressArray removeAllObjects];
+//    NSData *data=[NSKeyedArchiver archivedDataWithRootObject:AddressArray];
+//    [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"address"];
+//    [self.navigationController popViewControllerAnimated:YES];
+//
     
     if(self.completion&&self.textfield2.text.length>0&&self.textfield3.text.length>0&&self.textfield4.text.length>0&&self.textfield5.text.length>0){
          NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
@@ -452,6 +515,7 @@
          [self.navigationController popViewControllerAnimated:YES];
         [self showMessage:@"删除成功"];
     }else{
+       
         [self showMessage:@"操作失败"];
 
     }
@@ -494,9 +558,6 @@
              [self showMessage:@"地址保存成功"];
             }
          [AddressArray addObject:model];
-            
-
-        NSLog(@"2   %@",AddressArray);
         data = [NSKeyedArchiver archivedDataWithRootObject:AddressArray];
         
         

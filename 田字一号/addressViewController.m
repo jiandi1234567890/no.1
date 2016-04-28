@@ -93,14 +93,12 @@
     if(data!=NULL){
      NSArray *array=[NSKeyedUnarchiver unarchiveObjectWithData:data];
         self.addressArray = [[NSMutableArray alloc]initWithArray:array];
-//       for(addressModel *model in array){
-//           [self.addressArray addObject:model];
-//       }
     }
     
-    NSLog(@"%@",self.addressArray);
-    
 }
+
+
+
 
 #pragma mark tableviewdatasoure
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,7 +145,7 @@
     
     addVC.hidesBottomBarWhenPushed=YES;
     addVC.view.hidden=NO;
-    //addVC.view;
+    addVC.addresstofirst.hidden=NO;
     [addVC.setaddress setTitle:model.address forState:UIControlStateNormal];
     addVC.textfield2.text=model.addressmore;
     addVC.textfield3.text=model.name;

@@ -57,32 +57,34 @@
         
         
         
+        self.imageview.sd_layout
+        .widthIs(12)
+        .rightSpaceToView(self.contentView,10)
+        .topSpaceToView(self.contentView,15 )
+        .bottomSpaceToView(self.contentView,15);
+        
+        
+        self.phonenumber.sd_layout
+        .topSpaceToView(self.contentView,0)
+        .rightSpaceToView(self.imageview,5)
+        .widthIs(120)
+        .heightIs(30);
         
         self.name.sd_layout
         .topSpaceToView(self.contentView,0)
         .leftSpaceToView(self.contentView,10)
-        .widthIs(([UIScreen mainScreen].bounds.size.width-40)/2)
+        .rightSpaceToView(self.phonenumber,0)
         .heightIs(30);
         
         
         self.address.sd_layout
         .topSpaceToView(self.name,0)
         .leftSpaceToView(self.contentView,10)
-        .widthIs([UIScreen mainScreen].bounds.size.width-40)
+        .rightSpaceToView(self.imageview,5)
         .heightIs(24);
+
         
-        self.phonenumber.sd_layout
-        .topEqualToView(self.name)
-        .leftSpaceToView(self.name,0)
-        .widthIs(([UIScreen mainScreen].bounds.size.width-40)/2)
-        .heightIs(30);
-        
-        
-        self.imageview.sd_layout
-        .leftSpaceToView(self.phonenumber,10)
-        .rightSpaceToView(self.contentView,10)
-        .topSpaceToView(self.contentView,15 )
-        .bottomSpaceToView(self.contentView,15);
+       
         
        
 

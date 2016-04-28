@@ -15,6 +15,7 @@
 #import "addressTableViewCell.h"
 #import "ordersettlementTableViewCell.h"
 #import "peisongTableViewCell.h"
+#import "myordersViewController.h"
 
 
 @interface confirmorderViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -32,6 +33,7 @@
     
     //商品的总价
     NSString *allmoney;
+    UIAlertController  *altc;
     
     
 }
@@ -49,7 +51,6 @@
     NSData *dataAddress=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
     if(dataAddress){
         addressArray=[NSKeyedUnarchiver unarchiveObjectWithData:dataAddress];
-       // addressArray =[NSArray arrayWithObjects:mutablearray[0], nil];
     }
     
     
@@ -77,10 +78,27 @@
     
 }
 
--(void)SubmitOrdersbuttonClick{
+
+
+
+-(void)viewWillAppear:(BOOL)animated{
     
-    NSLog(@"提交订单");
+    [shoppingthingsArray removeAllObjects];
+    
+    
+    [self creatData];
+    [self reloadPrice];
+    [tableview reloadData];
 }
+
+-(void)poptorootview{
+    NSLog(@"nihoa");
+    
+    [self.tabBarController setSelectedIndex:4];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,7 +108,7 @@
     
     //更改返回键样式
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(poptorootview)];
     self.navigationItem.backBarButtonItem = item;
     
     self.navigationItem.title=@"确认订单";
@@ -164,6 +182,50 @@
 }
 
 
+
+
+//订单提交
+-(void)SubmitOrdersbuttonClick{
+   
+    NSLog(@"提交订单");
+    if(addressArray.count>0){
+       
+        NSString *string=[NSString stringWithFormat:@"付款金额：%@",allmoney];
+        
+      altc=[UIAlertController alertControllerWithTitle:string message:@"请输入支付密码" preferredStyle:UIAlertControllerStyleAlert];
+        
+    [altc addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.backgroundColor=[UIColor whiteColor];
+        textField.secureTextEntry=YES;
+    }];
+        
+    [altc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil] ];
+        [altc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+           
+            //UITextField *password=altc.textFields.firstObject;
+            if([altc.textFields.firstObject.text isEqualToString:@"123456"]){
+                 [self showMessage:@"付款成功"];
+                myordersViewController *myorderVC=[[myordersViewController alloc]init];
+            
+                [self.navigationController pushViewController:myorderVC animated:YES];
+                
+                
+            }else{
+                [self showMessage:@"密码错误，请重新提交订单"];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        
+        }]];
+    [self presentViewController:altc animated:YES completion:nil];
+   
+    
+    }else{
+        [self showMessage:@"请勿重复提交订单"];;
+        }
+    
+}
+
+
 #pragma mark tableviewdatasource
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -194,7 +256,6 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-   // return 6;
     return 4;
 }
 
@@ -208,8 +269,11 @@
         }
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
       
+        if(addressArray.count>0){
         [cell loadDataWithModel:addressArray[0]];
-       
+        }else {
+            cell.address.text=@"尚未添加地址，请点击添加";
+        }
        
         return cell;
         
@@ -319,6 +383,37 @@
     
 }
 
+
+
+
+
+//按键提醒显示
+-(void)showMessage:(NSString *)message
+{
+    UIWindow * window = [UIApplication sharedApplication].keyWindow;
+    UIView *showview =  [[UIView alloc]init];
+    showview.backgroundColor = [UIColor blackColor];
+    showview.alpha = 0.8f;
+    showview.layer.cornerRadius = 5.0f;
+    showview.layer.masksToBounds = YES;
+    [window addSubview:showview];
+    
+    UILabel *label = [[UILabel alloc]init];
+    CGSize LabelSize=[message boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 999) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:20]} context:nil].size;
+    label.text = message;
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:16];
+    
+    showview.frame = CGRectMake(20, ([UIScreen mainScreen].bounds.size.height)/2,[UIScreen mainScreen].bounds.size.width-40, LabelSize.height+10);
+    label.frame = CGRectMake((CGRectGetMaxX(showview.frame)-LabelSize.width)/2, 5, LabelSize.width, LabelSize.height);
+    
+    [showview addSubview:label];
+    [UIView animateWithDuration:2 animations:^{showview.alpha=0.0f;}    completion:^(BOOL finished) {
+        [showview removeFromSuperview];
+    }];
+}
 
 
 - (void)didReceiveMemoryWarning {

@@ -15,4 +15,5 @@
 @property(nonatomic,strong) UILabel * cutmoneylabel2;
 @property(nonatomic,strong) UILabel * freightlabel2;
 @property(nonatomic,strong) UITextField * leavewordTF;
+
 @end
