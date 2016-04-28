@@ -16,9 +16,9 @@
 {
     UITableView *tableview;
     
-    NSMutableArray *addressArray;
+    //NSMutableArray *addressArray;
 }
-
+@property(nonatomic,strong) NSMutableArray * addressArray;
 @end
 
 @implementation addressViewController
@@ -26,7 +26,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     
-    [addressArray removeAllObjects];
+    [self.addressArray removeAllObjects];
     [self creatdata];
     [tableview reloadData];
 }
@@ -45,9 +45,9 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
     
-    addressArray=[[NSMutableArray alloc]init];
     
-    
+    //self.addressArray=[NSMutableArray array];
+   
     
     [self creatdata];
     
@@ -89,16 +89,23 @@
     
     
     NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
-    if(data){
-     addressArray=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    if(data!=NULL){
+     NSArray *array=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+        self.addressArray = [[NSMutableArray alloc]initWithArray:array];
+//       for(addressModel *model in array){
+//           [self.addressArray addObject:model];
+//       }
     }
-          
+    
+    NSLog(@"%@",self.addressArray);
+    
 }
 
 #pragma mark tableviewdatasoure
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 64;
+    return 54;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -106,7 +113,9 @@
     return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return addressArray.count;
+    
+    
+    return self.addressArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -122,8 +131,9 @@
         cell=[[addressTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-       
-    [cell loadDataWithModel:addressArray[indexPath.section]];
+   
+    
+    [cell loadDataWithModel:self.addressArray[indexPath.section]];
     
     return cell;
 }
@@ -132,7 +142,7 @@
 #pragma mark tableviewdelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-     addressModel *model=addressArray[indexPath.row];
+     addressModel *model=self.addressArray[indexPath.section];
      add_addressViewController *addVC=[[add_addressViewController alloc]init];
     
     addVC.hidesBottomBarWhenPushed=YES;

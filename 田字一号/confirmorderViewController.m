@@ -14,6 +14,7 @@
 #import "shoppingcartTableViewCell.h"
 #import "addressTableViewCell.h"
 #import "ordersettlementTableViewCell.h"
+#import "peisongTableViewCell.h"
 
 
 @interface confirmorderViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -43,7 +44,7 @@
     NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"shoppingthings"];
     if(data){
         shoppingthingsArray=[NSKeyedUnarchiver unarchiveObjectWithData:data];
-        number=[NSString stringWithFormat:@"%ld",shoppingthingsArray.count];
+        number=[NSString stringWithFormat:@"%ld",(long)shoppingthingsArray.count];
     }
     NSData *dataAddress=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
     if(dataAddress){
@@ -129,15 +130,8 @@
     tableview.backgroundColor=[UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.00];
     tableview.delegate=self;
     tableview.dataSource=self;
-    
-    //解决默认cell下划线偏移问题
-    if ([tableview respondsToSelector:@selector(setSeparatorInset:)]) {
-        [tableview   setSeparatorInset:UIEdgeInsetsZero];
-    }
-    
-    if ([tableview  respondsToSelector:@selector(setLayoutMargins:)]) {
-        [tableview  setLayoutMargins:UIEdgeInsetsZero];
-    }
+    tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
+ 
     
     [self.view addSubview:tableview];
     
@@ -175,12 +169,14 @@
 {
     
     if(indexPath.section==0){
-        return 54;
+        return 56;
     }
     else if(indexPath.section==1){
     return 95;
-    }else if(indexPath.section==2){
+    }else if(indexPath.section==3){
         return (170+180);
+    }else if(indexPath.section==2){
+        return 110;
     }
     else {return 0;}
     
@@ -199,29 +195,22 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
    // return 6;
-    return 3;
+    return 4;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
         
-        static NSString *ID1=@"celladdress";
-        addressTableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:ID1];
+        addressTableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
         if(!cell){
-            cell=[[addressTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID1];
+            cell=[[addressTableViewCell alloc]init];
         }
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
       
         [cell loadDataWithModel:addressArray[0]];
-        //解决默认cell下划线偏移问题
-        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-            [cell setSeparatorInset:UIEdgeInsetsZero];
-        }
-        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-        }
-
+       
+       
         return cell;
         
     }else if(indexPath.section==1){
@@ -237,15 +226,7 @@
     cell.selectbutton.hidden=YES;
     cell.deletebutton.hidden=YES;
    
-        
-        //解决默认cell下划线偏移问题
-        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-            [cell setSeparatorInset:UIEdgeInsetsZero];
-        }
-        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-        }
-        
+            
  //回调
     __block shoppingcartTableViewCell *weakcell=cell;
     cell.addnumber=^(){
@@ -295,11 +276,19 @@
     [cell loaddataWith:[shoppingthingsArray objectAtIndex:indexPath.row]];
          return cell;
     }else if(indexPath.section==2){
+        peisongTableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+        if(!cell){
+            cell=[[peisongTableViewCell alloc]init];
+        }
+        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+               return cell;
         
-        static NSString *ID=@"ordercell";
+    }else if(indexPath.section==3){
+        
+        
         ordersettlementTableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
         if(!cell){
-            cell=[[ordersettlementTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            cell=[[ordersettlementTableViewCell alloc]init];
         }
         cell.selectionStyle=UITableViewCellSelectionStyleNone;
         cell.moneylabel2.text=[NSString stringWithFormat:@"¥%@",allmoney];

@@ -94,8 +94,6 @@
         
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:sellectarray];
         [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"shoppingthings"];
-
-        NSLog(@"%@",sellectarray);
         
     }else{
         [self showMessage:@"还未选择商品，请勾选商品"];
@@ -294,18 +292,24 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    NSString *string=[NSString stringWithFormat:@"%ld",dataarray.count];
+    
+   
+      return 1;
+  
+   
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    NSString *string=[NSString stringWithFormat:@"%ld",(long)dataarray.count];
     if([string isEqualToString:@"0"]){
         string=nil;
         
     }
     self.tabBarItem.badgeValue=string;
     
-    return 1;
-}
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return dataarray.count;
+       return dataarray.count;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -345,10 +349,10 @@
        
       
         if(select){
-            [sellectarray addObject:[dataarray objectAtIndex:indexPath.row]];
+            [sellectarray addObject:[dataarray objectAtIndex:indexPath.section]];
 
         }else{
-            [sellectarray removeObject:[dataarray objectAtIndex:indexPath.row]];
+            [sellectarray removeObject:[dataarray objectAtIndex:indexPath.section]];
         }
         
         if(sellectarray.count==dataarray.count){
@@ -367,7 +371,7 @@
        NSInteger count=[weakcell.numlabel.text integerValue];
        count++;
         
-        shoppingcartModel *model=[dataarray objectAtIndex:indexPath.row];
+        shoppingcartModel *model=[dataarray objectAtIndex:indexPath.section];
          model.number=count;
         NSString *numStr = [NSString stringWithFormat:@"%ld",(long)count];
         
@@ -375,7 +379,7 @@
         weakcell.numlabel.text=numStr;
         weakcell.pricelabel.text=priceStr;
         
-        [dataarray replaceObjectAtIndex:indexPath.row withObject:model];
+        [dataarray replaceObjectAtIndex:indexPath.section withObject:model];
         
         
         if([sellectarray containsObject:model]){
@@ -395,9 +399,9 @@
         }
         
         
-       shoppingcartModel *model=[dataarray objectAtIndex:indexPath.row];
+       shoppingcartModel *model=[dataarray objectAtIndex:indexPath.section];
         model.number=count;
-        [dataarray replaceObjectAtIndex:indexPath.row withObject:model];
+        [dataarray replaceObjectAtIndex:indexPath.section withObject:model];
         NSString *numStr = [NSString stringWithFormat:@"%ld",(long)count];
         
         NSString *priceStr=[NSString stringWithFormat:@"¥ 23.00\nX %ld",(long)count];
@@ -418,14 +422,14 @@
         
         
         
-        shoppingcartModel *model = [dataarray objectAtIndex:indexPath.row];
+        shoppingcartModel *model = [dataarray objectAtIndex:indexPath.section];
         
-        [dataarray removeObjectAtIndex:indexPath.row];
+        [dataarray removeObjectAtIndex:indexPath.section];
         
         //删除
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+   
+        [tableview deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
 
         //NSInteger number=dataarray.count;
         
@@ -453,7 +457,7 @@
         [tableview reloadData];
     };
     
-     [cell loaddataWith:[dataarray objectAtIndex:indexPath.row]];
+     [cell loaddataWith:[dataarray objectAtIndex:indexPath.section]];
     
     return cell;
     

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface peisongTableViewCell : UITableViewCell
+@property(nonatomic,strong) UIButton * button1;
+@property(nonatomic,strong) UIButton * button2;
+@property(nonatomic,strong) UIButton * button3;
+@property(nonatomic,strong) UIButton * button4;
 
 @end

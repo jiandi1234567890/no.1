@@ -397,7 +397,7 @@
    
     self.completion=NO;
     
-    //AddressArray=[[NSMutableArray alloc]init];
+    AddressArray=[[NSMutableArray alloc]init];
     
     self.provinces=[self getprovinces];
     
@@ -469,9 +469,10 @@
         
         BOOL success=YES;
         NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
-        if(data!=nil){
-            AddressArray=[NSKeyedUnarchiver unarchiveObjectWithData:data];
-       
+        
+        NSArray *array=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+            AddressArray = [[NSMutableArray alloc]initWithArray:array];
+            
             addressModel *model=[[addressModel alloc]init];
             model.address=self.setaddress.titleLabel.text;
             model.addressmore=self.textfield2.text;
@@ -479,7 +480,7 @@
             model.phonenumber=self.textfield4.text;
             model.postcode=self.textfield5.text;
         
-         NSArray *array=[NSArray arrayWithArray:AddressArray];
+        
             for(addressModel *model1 in array){
                 if([model1 isEqualToaddress:model]){
                     
@@ -493,11 +494,14 @@
              [self showMessage:@"地址保存成功"];
             }
          [AddressArray addObject:model];
-        }
-        
+            
+
+        NSLog(@"2   %@",AddressArray);
         data = [NSKeyedArchiver archivedDataWithRootObject:AddressArray];
-        [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"address"];
         
+        
+        [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"address"];
+    
         [self.navigationController popViewControllerAnimated:YES];
         
     }else{
@@ -628,6 +632,10 @@
 }
 
 
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view  endEditing:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
