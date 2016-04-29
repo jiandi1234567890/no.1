@@ -33,7 +33,6 @@
     
     //商品的总价
     NSString *allmoney;
-    UIAlertController  *altc;
     
     
 }
@@ -63,7 +62,7 @@
         
         settlementnumber+=model.number;
         
-        settlementprice=23*settlementnumber;
+        settlementprice=31.24*settlementnumber;
        
     }
     
@@ -91,13 +90,6 @@
     [tableview reloadData];
 }
 
--(void)poptorootview{
-    NSLog(@"nihoa");
-    
-    [self.tabBarController setSelectedIndex:4];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
-}
 
 
 - (void)viewDidLoad {
@@ -108,9 +100,9 @@
     
     //更改返回键样式
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(poptorootview)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = item;
-    
+
     self.navigationItem.title=@"确认订单";
     self.view.backgroundColor=[UIColor whiteColor];
     
@@ -192,7 +184,7 @@
        
         NSString *string=[NSString stringWithFormat:@"付款金额：%@",allmoney];
         
-      altc=[UIAlertController alertControllerWithTitle:string message:@"请输入支付密码" preferredStyle:UIAlertControllerStyleAlert];
+      UIAlertController  *altc=[UIAlertController alertControllerWithTitle:string message:@"请输入支付密码" preferredStyle:UIAlertControllerStyleAlert];
         
     [altc addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.backgroundColor=[UIColor whiteColor];
@@ -205,11 +197,34 @@
             //UITextField *password=altc.textFields.firstObject;
             if([altc.textFields.firstObject.text isEqualToString:@"123456"]){
                  [self showMessage:@"付款成功"];
+                
                 myordersViewController *myorderVC=[[myordersViewController alloc]init];
-            
                 [self.navigationController pushViewController:myorderVC animated:YES];
                 
+                //储存订单信息
+                NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"myorders"];
                 
+                   NSArray  *array=[NSKeyedUnarchiver unarchiveObjectWithData:data];
+                   NSMutableArray *myordersArray=[NSMutableArray arrayWithArray:array];
+                    [myordersArray addObject:shoppingthingsArray];
+               
+                data = [NSKeyedArchiver archivedDataWithRootObject:myordersArray];
+                
+                [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"myorders"];
+                //获取订单时间作为订单号
+                NSDate *  senddate=[NSDate date];
+                NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+                [dateformatter setDateFormat:@"YYYYMMddhhmmssSSS"];
+                NSString * time=[dateformatter stringFromDate:senddate];
+                //将时间戳设为订单号存储
+                NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
+                NSMutableArray *ordernumber=[NSMutableArray arrayWithArray:Array];
+                [ordernumber addObject:time];
+                [[NSUserDefaults standardUserDefaults]setObject:ordernumber forKey:@"ordernumber"];
+                
+                
+                
+            
             }else{
                 [self showMessage:@"密码错误，请重新提交订单"];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -220,7 +235,7 @@
    
     
     }else{
-        [self showMessage:@"请勿重复提交订单"];;
+        [self showMessage:@"请确认收货地址"];;
         }
     
 }
@@ -289,9 +304,7 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     cell.selectbutton.hidden=YES;
     cell.deletebutton.hidden=YES;
-   
-            
- //回调
+    //回调
     __block shoppingcartTableViewCell *weakcell=cell;
     cell.addnumber=^(){
         

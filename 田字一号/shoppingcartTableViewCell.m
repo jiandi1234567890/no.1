@@ -79,7 +79,7 @@
 -(void)loaddataWith:(shoppingcartModel *)model
 {
     self.imageview.image=[UIImage imageNamed:model.imagename];
-    self.pricelabel.text=[NSString stringWithFormat:@"¥ 23.00\nX %ld",(long)model.number];
+    self.pricelabel.text=[NSString stringWithFormat:@"¥ 31.24\nX %ld",(long)model.number];
     self.numlabel.text=[NSString stringWithFormat:@"%ld",(long)model.number];
     self.namelabel.text=model.namestr;
     
@@ -89,6 +89,9 @@
     
 }
 
+//-(void)setSelectbutton:(UIButton *)selectbutton{
+//    
+//}
 
 -(void) setupmainview
 {
@@ -178,14 +181,13 @@
     
     
     //图片
+    
     self.imageview.sd_layout
     .topSpaceToView(self.contentView,5)
     .bottomSpaceToView(self.contentView,5)
     .leftSpaceToView(self.selectbutton,10)
     .widthEqualToHeight();
-    
-    
-    //名称
+        //名称
     self.namelabel.sd_layout
     .topEqualToView(self.imageview)
     .leftSpaceToView(self.imageview,5)

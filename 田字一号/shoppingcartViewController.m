@@ -43,7 +43,7 @@
         
         settlementnumber+=model.number;
         
-        settlementprice=23*settlementnumber;
+        settlementprice=31.24*settlementnumber;
        
     }
     
@@ -91,9 +91,12 @@
     confirmVC.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:confirmVC animated:YES];
       
-        
+        //结算选中的物品
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:sellectarray];
         [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"shoppingthings"];
+        //购物车移除结算的商品
+        NSInteger number=dataarray.count-sellectarray.count;
+        [[NSUserDefaults standardUserDefaults]setInteger:number forKey:@"addshoppingcart"];
         
     }else{
         [self showMessage:@"还未选择商品，请勾选商品"];
@@ -435,7 +438,7 @@
         //删除
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
    
-        [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+        [tableview deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
 
         //NSInteger number=dataarray.count;
         

@@ -17,6 +17,7 @@
 #import "shareViewController.h"
 #import "myordersViewController.h"
 #import "DescriptionsViewController.h"
+#import "mycollectionViewController.h"
 
 #define ScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
@@ -594,16 +595,21 @@
                 break;
             case 2:
             {
+                NSLog(@"我的订单");
                 myordersViewController *moVC=[[myordersViewController alloc]init];
                 moVC.hidesBottomBarWhenPushed=YES;
                 [self.navigationController pushViewController:moVC animated:YES];
             }
-                NSLog(@"我的订单");
+              
                 break;
             case 3:
-                
-                
+            {
                 NSLog(@"收藏夹");
+                mycollectionViewController *collectionVC=[[mycollectionViewController alloc]init];
+                collectionVC.hidesBottomBarWhenPushed=YES;
+                [self.navigationController pushViewController:collectionVC animated:YES];
+                
+            }
                 break;
             case 4:
                 NSLog(@"账户充值");

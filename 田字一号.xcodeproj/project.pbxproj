@@ -165,6 +165,7 @@
 		D87EB7461CAAB742007A0E81 /* labelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D87EB7451CAAB742007A0E81 /* labelCollectionViewCell.m */; };
 		D89F24221CBD1D9C0005B018 /* findcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89F24211CBD1D9C0005B018 /* findcodeViewController.m */; };
 		D89F24251CBD1DD80005B018 /* registerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89F24241CBD1DD80005B018 /* registerViewController.m */; };
+		D8B9E5751CD352D10030BD59 /* mycollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B9E5741CD352D10030BD59 /* mycollectionViewController.m */; };
 		D8D4960B1CBB30D300ED7ACD /* customer1TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4960A1CBB30D300ED7ACD /* customer1TableViewCell.m */; };
 		D8D4960E1CBB4F6900ED7ACD /* customer2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4960D1CBB4F6900ED7ACD /* customer2TableViewCell.m */; };
 		D8D658C11CB3484A003A6611 /* myordersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D658C01CB3484A003A6611 /* myordersViewController.m */; };
@@ -385,6 +386,8 @@
 		D89F24211CBD1D9C0005B018 /* findcodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = findcodeViewController.m; sourceTree = "<group>"; };
 		D89F24231CBD1DD80005B018 /* registerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registerViewController.h; sourceTree = "<group>"; };
 		D89F24241CBD1DD80005B018 /* registerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registerViewController.m; sourceTree = "<group>"; };
+		D8B9E5731CD352D10030BD59 /* mycollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mycollectionViewController.h; sourceTree = "<group>"; };
+		D8B9E5741CD352D10030BD59 /* mycollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mycollectionViewController.m; sourceTree = "<group>"; };
 		D8D496091CBB30D300ED7ACD /* customer1TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customer1TableViewCell.h; sourceTree = "<group>"; };
 		D8D4960A1CBB30D300ED7ACD /* customer1TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customer1TableViewCell.m; sourceTree = "<group>"; };
 		D8D4960C1CBB4F6900ED7ACD /* customer2TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customer2TableViewCell.h; sourceTree = "<group>"; };
@@ -633,14 +636,7 @@
 		D809D3841CA8C48A00E5685E /* view */ = {
 			isa = PBXGroup;
 			children = (
-				D8D658C21CB360BE003A6611 /* DescriptionsViewController.h */,
-				D8D658C31CB360BE003A6611 /* DescriptionsViewController.m */,
-				D89F24231CBD1DD80005B018 /* registerViewController.h */,
-				D89F24241CBD1DD80005B018 /* registerViewController.m */,
-				D89F24201CBD1D9C0005B018 /* findcodeViewController.h */,
-				D89F24211CBD1D9C0005B018 /* findcodeViewController.m */,
-				D836D1311CD206E100D38CBF /* myorder */,
-				D8F7C9EC1CCF3FFE00F9E21A /* confirmorder */,
+				D8B9E5711CD34F040030BD59 /* public */,
 				D809D3C51CA8F42600E5685E /* homepage */,
 				D809D3C61CA8F44700E5685E /* activity */,
 				D809D3C71CA8F45E00E5685E /* sort */,
@@ -707,21 +703,10 @@
 		D809D3C91CA8F47D00E5685E /* customercenter */ = {
 			isa = PBXGroup;
 			children = (
-				D849B8FD1CCDD4E900414E4E /* addaddress */,
 				D809D3C21CA8F07100E5685E /* customercenterViewController.h */,
 				D809D3C31CA8F07100E5685E /* customercenterViewController.m */,
-				D8D496091CBB30D300ED7ACD /* customer1TableViewCell.h */,
-				D8D4960A1CBB30D300ED7ACD /* customer1TableViewCell.m */,
-				D8D4960C1CBB4F6900ED7ACD /* customer2TableViewCell.h */,
-				D8D4960D1CBB4F6900ED7ACD /* customer2TableViewCell.m */,
-				D8F9711E1CBC86D60075891A /* customer3TableViewCell.h */,
-				D8F9711F1CBC86D60075891A /* customer3TableViewCell.m */,
-				D8F7C9ED1CCF4F8700F9E21A /* helpViewController.h */,
-				D8F7C9EE1CCF4F8700F9E21A /* helpViewController.m */,
-				D8F971221CBC95160075891A /* signoutTableViewCell.h */,
-				D8F971231CBC95160075891A /* signoutTableViewCell.m */,
-				D8F971251CBC9DAA0075891A /* titleTableViewCell.h */,
-				D8F971261CBC9DAA0075891A /* titleTableViewCell.m */,
+				D8B9E56E1CD34C550030BD59 /* loginin */,
+				D8B9E5701CD34D110030BD59 /* loginout */,
 			);
 			name = customercenter;
 			sourceTree = "<group>";
@@ -762,6 +747,58 @@
 				D849B9021CCDE19D00414E4E /* add_addressViewController.m */,
 			);
 			name = addaddress;
+			sourceTree = "<group>";
+		};
+		D8B9E56E1CD34C550030BD59 /* loginin */ = {
+			isa = PBXGroup;
+			children = (
+				D8D496091CBB30D300ED7ACD /* customer1TableViewCell.h */,
+				D8D4960A1CBB30D300ED7ACD /* customer1TableViewCell.m */,
+				D8D4960C1CBB4F6900ED7ACD /* customer2TableViewCell.h */,
+				D8D4960D1CBB4F6900ED7ACD /* customer2TableViewCell.m */,
+				D8F9711E1CBC86D60075891A /* customer3TableViewCell.h */,
+				D8F9711F1CBC86D60075891A /* customer3TableViewCell.m */,
+				D8F7C9ED1CCF4F8700F9E21A /* helpViewController.h */,
+				D8F7C9EE1CCF4F8700F9E21A /* helpViewController.m */,
+				D8F971221CBC95160075891A /* signoutTableViewCell.h */,
+				D8F971231CBC95160075891A /* signoutTableViewCell.m */,
+				D8F971251CBC9DAA0075891A /* titleTableViewCell.h */,
+				D8F971261CBC9DAA0075891A /* titleTableViewCell.m */,
+				D8B9E5721CD34FE60030BD59 /* changepassword */,
+				D849B8FD1CCDD4E900414E4E /* addaddress */,
+			);
+			name = loginin;
+			sourceTree = "<group>";
+		};
+		D8B9E5701CD34D110030BD59 /* loginout */ = {
+			isa = PBXGroup;
+			children = (
+				D89F24231CBD1DD80005B018 /* registerViewController.h */,
+				D89F24241CBD1DD80005B018 /* registerViewController.m */,
+				D89F24201CBD1D9C0005B018 /* findcodeViewController.h */,
+				D89F24211CBD1D9C0005B018 /* findcodeViewController.m */,
+			);
+			name = loginout;
+			sourceTree = "<group>";
+		};
+		D8B9E5711CD34F040030BD59 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				D8D658C21CB360BE003A6611 /* DescriptionsViewController.h */,
+				D8D658C31CB360BE003A6611 /* DescriptionsViewController.m */,
+				D8B9E5731CD352D10030BD59 /* mycollectionViewController.h */,
+				D8B9E5741CD352D10030BD59 /* mycollectionViewController.m */,
+				D8F7C9EC1CCF3FFE00F9E21A /* confirmorder */,
+				D836D1311CD206E100D38CBF /* myorder */,
+			);
+			name = public;
+			sourceTree = "<group>";
+		};
+		D8B9E5721CD34FE60030BD59 /* changepassword */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = changepassword;
 			sourceTree = "<group>";
 		};
 		D8F7C9EC1CCF3FFE00F9E21A /* confirmorder */ = {
@@ -1072,6 +1109,7 @@
 				D849B8EB1CCDA8B300414E4E /* shoppingcartTableViewCell.m in Sources */,
 				D849B8FC1CCDAAF200414E4E /* shareViewController.m in Sources */,
 				D81591DC1CAA858D0090A993 /* messageViewController.m in Sources */,
+				D8B9E5751CD352D10030BD59 /* mycollectionViewController.m in Sources */,
 				D809D3BA1CA8F00E00E5685E /* activityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

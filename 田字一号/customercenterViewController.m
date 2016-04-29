@@ -83,19 +83,30 @@
         self.view.backgroundColor=[UIColor whiteColor];
         self.navigationItem.title=@"登录";
         
-        phonenumberTF=[[UITextField alloc]initWithFrame:CGRectMake(10, 20,ScreenWidth-20 , 40 )];
         
+        UILabel *nillabel1=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 1)];
+        nillabel1.backgroundColor=[UIColor clearColor];
+        phonenumberTF=[[UITextField alloc]initWithFrame:CGRectMake(10, 20,ScreenWidth-20 , 40 )];
         phonenumberTF.layer.borderWidth=1.5;
         phonenumberTF.placeholder=@"请输入账号（手机或邮箱）";
         phonenumberTF.layer.cornerRadius=5;
         phonenumberTF.layer.masksToBounds=YES;
+        phonenumberTF.leftView=nillabel1;
+        phonenumberTF.leftViewMode=UITextFieldViewModeAlways;
         
+        
+        
+        UILabel *nillabel2=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 20, 1)];
+        nillabel2.backgroundColor=[UIColor clearColor];
         codeTF=[[UITextField alloc]initWithFrame:CGRectMake(10, 70, ScreenWidth-20 , 40 )];
         codeTF.layer.borderWidth=1.5;
         codeTF.placeholder=@"请输入密码 ";
         codeTF.layer.cornerRadius=5;
         codeTF.layer.masksToBounds=YES;
         codeTF.secureTextEntry=YES;
+        codeTF.leftView=nillabel2;
+        codeTF.leftViewMode=UITextFieldViewModeAlways;
+        
         [self.view addSubview:phonenumberTF];
         [self.view addSubview:codeTF];
         
@@ -217,7 +228,7 @@
         {
             
             [[NSUserDefaults standardUserDefaults] setInteger:99  forKey:@"login"];
-            UIAlertController  *altc=[UIAlertController alertControllerWithTitle:@"对不起" message:@"您输入的账户或密码错误" preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertController  *altc=[UIAlertController alertControllerWithTitle:@"对不起" message:@"您输入的账户或密码错误" preferredStyle:UIAlertControllerStyleAlert];
             [altc addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil] ];
             [altc addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
             [self presentViewController:altc animated:YES completion:nil];
@@ -232,7 +243,7 @@
         
     {
         [[NSUserDefaults standardUserDefaults] setInteger:99  forKey:@"login"];
-        UIAlertController  *altc=[UIAlertController alertControllerWithTitle:@"错误" message:@"输入的账户和密码不能为空" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController  *altc=[UIAlertController alertControllerWithTitle:@"错误" message:@"输入的账户和密码不能为空" preferredStyle:UIAlertControllerStyleAlert];
         
         [altc addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil] ];
         
@@ -462,7 +473,11 @@
         }
             break;
         case 6:
-             NSLog(@"密码修改");
+        {
+            NSLog(@"密码修改");
+        
+        
+        }
             break;
         case 7:
         { NSLog(@"邀请人");

@@ -19,7 +19,11 @@
 
 @implementation sortViewController
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableview reloadData];
+    [self.collectionview reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -80,22 +80,9 @@
         
         
        //控件约束
-        self.orderstate.sd_layout
-        .topSpaceToView(self,0)
-        .rightSpaceToView(self,5)
-        .widthIs(70)
-        .heightIs(45);
-        
-        
-        self.numberoforder.sd_layout
-        .topEqualToView(self.orderstate)
-        .rightSpaceToView(self.orderstate,0)
-        .leftSpaceToView(self,5)
-        .heightIs(45);
-        
         
         labelline1.sd_layout
-        .topSpaceToView(self.numberoforder,0)
+        .topSpaceToView(self,0)
         .rightSpaceToView(self,0)
         .leftSpaceToView(self,0)
         .heightIs(1);
@@ -129,23 +116,6 @@
         .heightIs(1);
         
         
-        self.allmoney.sd_layout
-        .topSpaceToView(labelline2,0)
-        .rightSpaceToView(self,0)
-        .leftSpaceToView(self,0)
-        .heightIs(45);
-        
-        
-        labelline3.sd_layout
-        .topSpaceToView(self.allmoney,0)
-        .rightSpaceToView(self,0)
-        .leftSpaceToView(self,0)
-        .heightIs(1);
-        
-        
-        
-        
-        
         
     }
     
@@ -156,6 +126,13 @@
     
 }
 
+
+-(void)loadDataWithModel:(shoppingcartModel *)model{
+    
+    
+    
+    
+}
 
 
 @end

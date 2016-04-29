@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "shoppingcartModel.h"
 
 @interface myorderTableViewCell : UITableViewCell
 //订单号
@@ -26,4 +27,5 @@
 //退款按键
 @property(nonatomic,strong) UIButton * cancel;
 
+-(void)loadDataWithModel:(shoppingcartModel *)model;
 @end
