@@ -58,8 +58,38 @@
     [self.view addSubview:passedcode];
 
     
+//获取验证码按钮
+    UIButton *getcodebutton=[UIButton buttonWithType:UIButtonTypeCustom];
+    getcodebutton.backgroundColor=[UIColor greenColor];
+    [getcodebutton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [getcodebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    getcodebutton.titleLabel.font=[UIFont systemFontOfSize:15];
+    getcodebutton.layer.cornerRadius=8;
+    getcodebutton.layer.masksToBounds=YES;
+    
+    [self.view addSubview:getcodebutton];
     
     
+    UILabel *labelgetcode=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 50)];
+    labelgetcode.text=@"验证码：";
+    labelgetcode.textAlignment=NSTextAlignmentRight;
+    securitycode=[[UITextField alloc]init];
+    securitycode.backgroundColor=[UIColor whiteColor];
+    securitycode.leftView=labelgetcode;
+    securitycode.leftViewMode=UITextFieldViewModeAlways;
+    securitycode.layer.borderColor=[UIColor blackColor].CGColor;
+    securitycode.layer.borderWidth=1;
+    [self.view addSubview:securitycode];
+    
+    
+ //确定注册
+    UIButton *surebutton=[UIButton buttonWithType:UIButtonTypeCustom];
+    surebutton.backgroundColor=[UIColor orangeColor];
+    [surebutton setTitle:@"确定注册" forState:UIControlStateNormal];
+    [surebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    surebutton.layer.cornerRadius=8;
+    surebutton.layer.masksToBounds=YES;
+    [self.view addSubview:surebutton];
     
     imageview.sd_layout
     .topSpaceToView(self.view,20)
@@ -77,6 +107,25 @@
     .topSpaceToView(phonenumber,10)
     .leftSpaceToView(self.view,10)
     .rightSpaceToView(self.view,10)
+    .heightIs(50);
+    
+    
+    getcodebutton.sd_layout
+    .topSpaceToView(passedcode,15)
+    .rightSpaceToView(self.view,10)
+    .heightIs(50)
+    .widthIs(100);
+    
+    securitycode.sd_layout
+    .topSpaceToView(passedcode,15)
+    .rightSpaceToView(getcodebutton,15)
+    .leftSpaceToView(self.view,10)
+    .heightIs(50);
+    
+    surebutton.sd_layout
+    .topSpaceToView(securitycode,15)
+    .rightSpaceToView(self.view,10)
+    .leftSpaceToView(self.view,10)
     .heightIs(50);
     
     

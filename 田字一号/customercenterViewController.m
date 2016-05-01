@@ -19,6 +19,7 @@
 #import "shareViewController.h"
 #import "helpViewController.h"
 #import "myordersViewController.h"
+#import "changecodeViewController.h"
 #define ScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 
@@ -330,7 +331,6 @@
 {
     
     static NSString *ID=@"cell1";
-    static NSString *ID2=@"cell2";
     if(indexPath.section==0)
     {
         titleTableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
@@ -475,7 +475,9 @@
         case 6:
         {
             NSLog(@"密码修改");
-        
+            changecodeViewController *changecodeVC=[[changecodeViewController alloc]init];
+            changecodeVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:changecodeVC animated:YES];
         
         }
             break;

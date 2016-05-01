@@ -170,6 +170,7 @@
 		D8D4960E1CBB4F6900ED7ACD /* customer2TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4960D1CBB4F6900ED7ACD /* customer2TableViewCell.m */; };
 		D8D658C11CB3484A003A6611 /* myordersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D658C01CB3484A003A6611 /* myordersViewController.m */; };
 		D8D658C41CB360BE003A6611 /* DescriptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D658C31CB360BE003A6611 /* DescriptionsViewController.m */; };
+		D8F164DF1CD49213005424A7 /* changecodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F164DE1CD49213005424A7 /* changecodeViewController.m */; };
 		D8F7C9EF1CCF4F8700F9E21A /* helpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7C9EE1CCF4F8700F9E21A /* helpViewController.m */; };
 		D8F7C9F21CD082A500F9E21A /* peisongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7C9F11CD082A500F9E21A /* peisongTableViewCell.m */; };
 		D8F7C9F51CD082F100F9E21A /* ordersettlementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8F7C9F41CD082F100F9E21A /* ordersettlementTableViewCell.m */; };
@@ -396,6 +397,8 @@
 		D8D658C01CB3484A003A6611 /* myordersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myordersViewController.m; sourceTree = "<group>"; };
 		D8D658C21CB360BE003A6611 /* DescriptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionsViewController.h; sourceTree = "<group>"; };
 		D8D658C31CB360BE003A6611 /* DescriptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionsViewController.m; sourceTree = "<group>"; };
+		D8F164DD1CD49213005424A7 /* changecodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = changecodeViewController.h; sourceTree = "<group>"; };
+		D8F164DE1CD49213005424A7 /* changecodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = changecodeViewController.m; sourceTree = "<group>"; };
 		D8F7C9ED1CCF4F8700F9E21A /* helpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpViewController.h; sourceTree = "<group>"; };
 		D8F7C9EE1CCF4F8700F9E21A /* helpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpViewController.m; sourceTree = "<group>"; };
 		D8F7C9F01CD082A500F9E21A /* peisongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = peisongTableViewCell.h; sourceTree = "<group>"; };
@@ -764,7 +767,7 @@
 				D8F971231CBC95160075891A /* signoutTableViewCell.m */,
 				D8F971251CBC9DAA0075891A /* titleTableViewCell.h */,
 				D8F971261CBC9DAA0075891A /* titleTableViewCell.m */,
-				D8B9E5721CD34FE60030BD59 /* changepassword */,
+				D8F164DC1CD491F9005424A7 /* changecode */,
 				D849B8FD1CCDD4E900414E4E /* addaddress */,
 			);
 			name = loginin;
@@ -794,11 +797,13 @@
 			name = public;
 			sourceTree = "<group>";
 		};
-		D8B9E5721CD34FE60030BD59 /* changepassword */ = {
+		D8F164DC1CD491F9005424A7 /* changecode */ = {
 			isa = PBXGroup;
 			children = (
+				D8F164DD1CD49213005424A7 /* changecodeViewController.h */,
+				D8F164DE1CD49213005424A7 /* changecodeViewController.m */,
 			);
-			name = changepassword;
+			name = changecode;
 			sourceTree = "<group>";
 		};
 		D8F7C9EC1CCF3FFE00F9E21A /* confirmorder */ = {
@@ -1087,6 +1092,7 @@
 				D8D4960E1CBB4F6900ED7ACD /* customer2TableViewCell.m in Sources */,
 				D8F971271CBC9DAA0075891A /* titleTableViewCell.m in Sources */,
 				D8F7C9EF1CCF4F8700F9E21A /* helpViewController.m in Sources */,
+				D8F164DF1CD49213005424A7 /* changecodeViewController.m in Sources */,
 				D89F24251CBD1DD80005B018 /* registerViewController.m in Sources */,
 				D849B8F21CCDA8E500414E4E /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				D849B9081CCE09A800414E4E /* addressModel.m in Sources */,
