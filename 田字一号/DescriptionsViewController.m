@@ -46,7 +46,7 @@
     
     self.navigationItem.rightBarButtonItem=right;
     
-    UIScrollView *scrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+ 
 
     
     //更改返回键样式

@@ -341,7 +341,7 @@
 //点击图片的事件
 - (void)carouselView:(XRCarouselView *)carouselView didClickImage:(NSInteger)index {
     [self.tabBarController setSelectedIndex:1];
-    NSLog(@"点击了第%ld张图片", index);
+    NSLog(@"点击了第%ld张图片", (long)index);
 }
 
 //滑动时开启关闭定时器
