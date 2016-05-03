@@ -20,7 +20,8 @@
 //登陆密码修改
 -(void)button1Click
 {
-    
+    findcodeViewController *findVC=[[findcodeViewController alloc]init];
+    [self.navigationController pushViewController:findVC animated:YES];
 }
 
 //支付密码修改
@@ -38,7 +39,11 @@
     self.navigationItem.title=@"密码修改";
     self.view.backgroundColor=[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.00];
     
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = item;
     //登录密码
+   
     UILabel *labelline1=[[UILabel alloc]init];
     labelline1.backgroundColor=[UIColor grayColor];
     [self.view addSubview:labelline1];

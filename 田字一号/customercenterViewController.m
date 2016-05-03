@@ -485,9 +485,7 @@
             changecodeViewController *changecodeVC=[[changecodeViewController alloc]init];
             changecodeVC.hidesBottomBarWhenPushed=YES;
             
-            [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-            UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-            self.navigationItem.backBarButtonItem = item;
+           
             [self.navigationController pushViewController:changecodeVC animated:YES];
         
         }

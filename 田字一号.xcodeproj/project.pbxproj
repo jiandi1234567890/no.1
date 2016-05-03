@@ -161,6 +161,8 @@
 		D849B9081CCE09A800414E4E /* addressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D849B9071CCE09A800414E4E /* addressModel.m */; };
 		D849B90B1CCE0E6F00414E4E /* addressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D849B90A1CCE0E6F00414E4E /* addressTableViewCell.m */; };
 		D8649C611CD82E980066621A /* mymoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8649C601CD82E980066621A /* mymoneyViewController.m */; };
+		D8649C661CD844360066621A /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = D8649C631CD844360066621A /* placeholder.png */; };
+		D8649C671CD844360066621A /* XRCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = D8649C651CD844360066621A /* XRCarouselView.m */; };
 		D879F0EE1CA95CD2004E15FE /* mainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D879F0ED1CA95CD2004E15FE /* mainCollectionViewCell.m */; };
 		D87EB7461CAAB742007A0E81 /* labelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D87EB7451CAAB742007A0E81 /* labelCollectionViewCell.m */; };
 		D89F24221CBD1D9C0005B018 /* findcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89F24211CBD1D9C0005B018 /* findcodeViewController.m */; };
@@ -379,6 +381,9 @@
 		D849B90A1CCE0E6F00414E4E /* addressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressTableViewCell.m; sourceTree = "<group>"; };
 		D8649C5F1CD82E980066621A /* mymoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mymoneyViewController.h; sourceTree = "<group>"; };
 		D8649C601CD82E980066621A /* mymoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mymoneyViewController.m; sourceTree = "<group>"; };
+		D8649C631CD844360066621A /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		D8649C641CD844360066621A /* XRCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XRCarouselView.h; sourceTree = "<group>"; };
+		D8649C651CD844360066621A /* XRCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XRCarouselView.m; sourceTree = "<group>"; };
 		D879F0EC1CA95CD2004E15FE /* mainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainCollectionViewCell.h; sourceTree = "<group>"; };
 		D879F0ED1CA95CD2004E15FE /* mainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mainCollectionViewCell.m; sourceTree = "<group>"; };
 		D87EB7441CAAB742007A0E81 /* labelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = labelCollectionViewCell.h; sourceTree = "<group>"; };
@@ -441,6 +446,7 @@
 		D809D2531CA8C33000E5685E = {
 			isa = PBXGroup;
 			children = (
+				D8649C621CD844360066621A /* XRCarouselView */,
 				D849B8ED1CCDA8E500414E4E /* SDAutoLayout */,
 				D809D25E1CA8C33000E5685E /* 田字一号 */,
 				D809D2781CA8C33000E5685E /* 田字一号Tests */,
@@ -750,6 +756,17 @@
 			name = addaddress;
 			sourceTree = "<group>";
 		};
+		D8649C621CD844360066621A /* XRCarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				D8649C631CD844360066621A /* placeholder.png */,
+				D8649C641CD844360066621A /* XRCarouselView.h */,
+				D8649C651CD844360066621A /* XRCarouselView.m */,
+			);
+			name = XRCarouselView;
+			path = "田字一号/SDAutoLayout/XRCarouselView";
+			sourceTree = "<group>";
+		};
 		D8B9E56E1CD34C550030BD59 /* loginin */ = {
 			isa = PBXGroup;
 			children = (
@@ -928,6 +945,7 @@
 				D809D3731CA8C39600E5685E /* tab_home_dark.png in Resources */,
 				D809D3601CA8C39600E5685E /* pic_goods5.jpg in Resources */,
 				D809D3311CA8C39600E5685E /* icon_user_cz.png in Resources */,
+				D8649C661CD844360066621A /* placeholder.png in Resources */,
 				D809D3671CA8C39600E5685E /* pic_pj3.jpg in Resources */,
 				D849B8F81CCDA96F00414E4E /* cart_selected_btn@2x.png in Resources */,
 				D809D37D1CA8C39600E5685E /* user_jcgx.png in Resources */,
@@ -1092,6 +1110,7 @@
 				D8D4960E1CBB4F6900ED7ACD /* customer2TableViewCell.m in Sources */,
 				D8F971271CBC9DAA0075891A /* titleTableViewCell.m in Sources */,
 				D8F7C9EF1CCF4F8700F9E21A /* helpViewController.m in Sources */,
+				D8649C671CD844360066621A /* XRCarouselView.m in Sources */,
 				D8F164DF1CD49213005424A7 /* changecodeViewController.m in Sources */,
 				D89F24251CBD1DD80005B018 /* registerViewController.m in Sources */,
 				D849B8F21CCDA8E500414E4E /* UITableView+SDAutoTableViewCellHeight.m in Sources */,

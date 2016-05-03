@@ -49,7 +49,6 @@
 -(void)homepagerightbutton
 {
     messageViewController *mVC=[[messageViewController alloc]init];
-   // mVC.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:0.56 green:0.76 blue:0.20 alpha:1.00];
     //隐藏tabbar
     mVC.hidesBottomBarWhenPushed = YES;
        [self.navigationController pushViewController:mVC animated:YES];
