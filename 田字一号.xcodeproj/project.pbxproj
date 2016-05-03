@@ -446,7 +446,6 @@
 		D809D2531CA8C33000E5685E = {
 			isa = PBXGroup;
 			children = (
-				D8649C621CD844360066621A /* XRCarouselView */,
 				D849B8ED1CCDA8E500414E4E /* SDAutoLayout */,
 				D809D25E1CA8C33000E5685E /* 田字一号 */,
 				D809D2781CA8C33000E5685E /* 田字一号Tests */,
@@ -732,6 +731,7 @@
 		D849B8ED1CCDA8E500414E4E /* SDAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
+				D8649C621CD844360066621A /* XRCarouselView */,
 				D849B8EE1CCDA8E500414E4E /* UITableView+SDAutoTableViewCellHeight.h */,
 				D849B8EF1CCDA8E500414E4E /* UITableView+SDAutoTableViewCellHeight.m */,
 				D849B8F01CCDA8E500414E4E /* UIView+SDAutoLayout.h */,
@@ -763,8 +763,7 @@
 				D8649C641CD844360066621A /* XRCarouselView.h */,
 				D8649C651CD844360066621A /* XRCarouselView.m */,
 			);
-			name = XRCarouselView;
-			path = "田字一号/SDAutoLayout/XRCarouselView";
+			path = XRCarouselView;
 			sourceTree = "<group>";
 		};
 		D8B9E56E1CD34C550030BD59 /* loginin */ = {

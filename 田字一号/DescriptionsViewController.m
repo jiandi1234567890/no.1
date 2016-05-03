@@ -35,6 +35,9 @@
     //不计算navigationbar高度，解决scrollerview位置偏移问题
     self.navigationController.navigationBar.translucent=NO;
     
+    
+    
+    
     UIButton *rightbutton=[UIButton buttonWithType:UIButtonTypeCustom];
     rightbutton.frame=CGRectMake(0, 0, 30, 30);
     [rightbutton setImage:[UIImage imageNamed:@"navbar_cart.png"] forState:UIControlStateNormal];
@@ -43,6 +46,8 @@
     
     self.navigationItem.rightBarButtonItem=right;
     
+    UIScrollView *scrollview=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+
     
     //更改返回键样式
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];

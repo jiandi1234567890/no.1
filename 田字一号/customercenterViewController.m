@@ -21,6 +21,7 @@
 #import "myordersViewController.h"
 #import "changecodeViewController.h"
 #import "mymoneyViewController.h"
+#import "mycollectionViewController.h"
 #define ScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 
@@ -616,7 +617,13 @@
             NSLog(@"充值");
             break;
         case 231:
+        {
             NSLog(@"section 0 商品收藏");
+            mycollectionViewController *collectionVC=[[mycollectionViewController alloc]init];
+            collectionVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:collectionVC animated:YES];
+        
+        }
             break;
         case 232:
             NSLog(@"section 0 优惠券");

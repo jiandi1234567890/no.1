@@ -216,7 +216,6 @@
                 NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
                 [dateformatter setDateFormat:@"YYYYMMddhhmmssSSS"];
                 NSString * time=[dateformatter stringFromDate:senddate];
-                NSLog(@"%@",time);
                 //将时间戳设为订单号存储
                 NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
                 

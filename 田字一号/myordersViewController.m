@@ -20,6 +20,8 @@ typedef void(^Block) ();
     NSMutableArray *myorders;
     //订单详情数组
     NSMutableArray *shopingthings;
+    //订单号数组
+    NSMutableArray *ordernumber;
     Block  myblock;
     
 }
@@ -32,8 +34,8 @@ typedef void(^Block) ();
     NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"myorders"];
     NSArray *array=[NSKeyedUnarchiver unarchiveObjectWithData:data];
     myorders=[[NSMutableArray alloc]initWithArray:array];
-    
-    //[[NSUserDefaults standardUserDefaults]setObject:nil forKey:@"myorders"];
+    NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
+    ordernumber=[NSMutableArray arrayWithArray:Array];
     
 }
 
@@ -46,10 +48,11 @@ typedef void(^Block) ();
 -(void)viewWillAppear:(BOOL)animated{
     [myorders removeAllObjects];
     [shopingthings removeAllObjects];
+    [ordernumber removeAllObjects];
     [self creatData];
     if(myorders.count<1){
         
-        [self showMessage:@"暂无订单"];
+    [self showMessage:@"暂无订单"];
     }
     
     
@@ -85,7 +88,7 @@ typedef void(^Block) ();
     tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableview];
     
-    
+   
     tableview.sd_layout
     .topSpaceToView(self.view,0)
     .bottomSpaceToView(self.view,0)
@@ -127,10 +130,8 @@ typedef void(^Block) ();
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view=[[UIView alloc]init];
     //获取订单号
-    NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
-    NSString *ordernumberStr=Array[section];
     
-    NSLog(@"%@",Array);
+    NSString *ordernumberStr=ordernumber[section];
     view.backgroundColor=[UIColor whiteColor];
     UILabel *label1=[[UILabel alloc]init];
     label1.text=[NSString stringWithFormat:@"订单号：%@",ordernumberStr];
@@ -324,10 +325,11 @@ typedef void(^Block) ();
        
 
         
-        NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
-        NSMutableArray *ordernumber=[NSMutableArray arrayWithArray:Array];
-        [ordernumber removeObject:Array[indexPath.section]];
-        [[NSUserDefaults standardUserDefaults]setObject:ordernumber forKey:@"ordernumber"];
+//        NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
+//        NSMutableArray *ordernumber=[NSMutableArray arrayWithArray:Array];
+        [ordernumber removeObject:ordernumber[indexPath.section]];
+        NSArray *Array=[NSArray arrayWithArray:ordernumber];
+        [[NSUserDefaults standardUserDefaults]setObject:Array forKey:@"ordernumber"];
          [tableview reloadData];
         
     };

@@ -18,16 +18,21 @@
 #import "myordersViewController.h"
 #import "DescriptionsViewController.h"
 #import "mycollectionViewController.h"
+#import "mymoneyViewController.h"
+#import "XRCarouselView.h"
+#import <objc/runtime.h>
 
 #define ScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 
-@interface homepageViewController ()<UISearchBarDelegate,UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface homepageViewController ()<UISearchBarDelegate,UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,XRCarouselViewDelegate>
+
 {   UISearchBar *searchbar;
     UIScrollView *imagescrollView;
     UIPageControl *imagepagecontrol;
     
 }
+@property(nonatomic,strong) XRCarouselView *XRCview;
 
 @end
 
@@ -122,25 +127,21 @@
     
     
     //首页图片滑动栏
-    imagescrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0,2,ScreenWidth,150)];
-    imagescrollView.delegate=self;
-    [mainscrollView addSubview:imagescrollView];
+    //既有本地图片也有网络图片
+    NSArray *arr3 = @[@"http://pic39.nipic.com/20140226/18071023_162553457000_2.jpg", [UIImage imageNamed:@"banner1.jpg"], @"http://hiphotos.baidu.com/praisejesus/pic/item/e8df7df89fac869eb68f316d.jpg", [UIImage imageNamed:@"banner2.jpg"],@"http://file27.mafengwo.net/M00/B2/12/wKgB6lO0ahWAMhL8AAV1yBFJDJw20.jpeg"];
     
-    for (int i=0; i<3; i++) {
-        UIImageView *imageview=[[UIImageView alloc] initWithFrame:CGRectMake(ScreenWidth*i, 0, ScreenWidth, 150)];
-        imageview.image=[UIImage imageNamed:[NSString stringWithFormat:@"banner%d.jpg",i+1]];
-        
-        [imagescrollView addSubview:imageview];
-        
-    }
-    imagescrollView.showsHorizontalScrollIndicator=NO;
-    imagescrollView.contentSize=CGSizeMake(ScreenWidth*3, 150);
-    imagescrollView.pagingEnabled=YES;
-    imagepagecontrol=[[UIPageControl alloc]initWithFrame:CGRectMake((ScreenWidth-ScreenWidth/3)/2, 150-20, ScreenWidth/3, 20)];
-    imagepagecontrol.numberOfPages=3;
-    imagepagecontrol.pageIndicatorTintColor=[UIColor whiteColor];
-    imagepagecontrol.currentPageIndicatorTintColor=[UIColor colorWithRed:0.35 green:0.76 blue:0.97 alpha:1.00];
-    [mainscrollView insertSubview:imagepagecontrol aboveSubview:imagescrollView];
+    
+    self.XRCview=[[XRCarouselView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 150) imageArray:arr3];
+    self.XRCview.delegate=self;
+    //设置分页控件指示器的颜色
+    [self.XRCview setPageColor:[UIColor whiteColor] andCurrentPageColor:[UIColor blueColor]];
+    //设置图片切换的方式
+    //self.XRCview.changeMode = ChangeModeFade;
+    self.XRCview.changeMode=ChangeModeDefault;
+    
+    self.XRCview.time = 3;
+    
+    [mainscrollView addSubview:self.XRCview];
     
     
     //限时抢购栏
@@ -334,6 +335,25 @@
 
     
 }
+
+
+#pragma mark XRCarouselViewDelegate
+//点击图片的事件
+- (void)carouselView:(XRCarouselView *)carouselView didClickImage:(NSInteger)index {
+    [self.tabBarController setSelectedIndex:1];
+    NSLog(@"点击了第%ld张图片", index);
+}
+
+//滑动时开启关闭定时器
+- (IBAction)start:(id)sender {
+    [self.XRCview startTimer];
+}
+
+- (IBAction)stop:(id)sender {
+    [self.XRCview stopTimer];
+}
+
+
 
 
 
@@ -611,7 +631,14 @@
             }
                 break;
             case 4:
+            {
                 NSLog(@"账户充值");
+                mymoneyViewController *myVC=[[mymoneyViewController alloc]init];
+                myVC.hidesBottomBarWhenPushed=YES;
+                [self.navigationController pushViewController:myVC animated:YES];
+                
+                
+            }
                 break;
                 
             default:
