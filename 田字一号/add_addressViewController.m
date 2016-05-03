@@ -485,11 +485,6 @@
 -(void)deletebuttonClick{
     
     
-//     [AddressArray removeAllObjects];
-//    NSData *data=[NSKeyedArchiver archivedDataWithRootObject:AddressArray];
-//    [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"address"];
-//    [self.navigationController popViewControllerAnimated:YES];
-//
     
     if(self.completion&&self.textfield2.text.length>0&&self.textfield3.text.length>0&&self.textfield4.text.length>0&&self.textfield5.text.length>0){
          NSData *data=[[NSUserDefaults standardUserDefaults]objectForKey:@"address"];
