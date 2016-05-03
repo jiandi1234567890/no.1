@@ -20,6 +20,7 @@
 #import "helpViewController.h"
 #import "myordersViewController.h"
 #import "changecodeViewController.h"
+#import "mymoneyViewController.h"
 #define ScreenWidth   [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight  [UIScreen mainScreen].bounds.size.height
 
@@ -458,7 +459,13 @@
             ;
             break;
         case 3:
-             NSLog(@"我的资产");
+        {
+            NSLog(@"我的资产");
+            mymoneyViewController *myVC=[[mymoneyViewController alloc]init];
+            myVC.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myVC animated:YES];
+        
+        }
             break;
         case 4:
             ;
@@ -477,6 +484,10 @@
             NSLog(@"密码修改");
             changecodeViewController *changecodeVC=[[changecodeViewController alloc]init];
             changecodeVC.hidesBottomBarWhenPushed=YES;
+            
+            [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+            UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+            self.navigationItem.backBarButtonItem = item;
             [self.navigationController pushViewController:changecodeVC animated:YES];
         
         }
@@ -534,20 +545,51 @@
 {
     
     switch (button.tag) {
-        case 201:
+        case 201:{
             NSLog(@"待配货");
+            myordersViewController *myorder=[[myordersViewController alloc]init];
+            myorder.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myorder animated:YES];
+
+            
+            
+        }
             break;
-        case 202:
+    case 202:
+        {
             NSLog(@"待自提");
+            myordersViewController *myorder=[[myordersViewController alloc]init];
+            myorder.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myorder animated:YES];
+
+        }
             break;
         case 203:
+        {
             NSLog(@"待收货");
+            myordersViewController *myorder=[[myordersViewController alloc]init];
+            myorder.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myorder animated:YES];
+
+        }
             break;
         case 204:
+        {
             NSLog(@"待评价");
+            myordersViewController *myorder=[[myordersViewController alloc]init];
+            myorder.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myorder animated:YES];
+
+        }
             break;
         case 205:
+        {
             NSLog(@"退款/售后");
+            myordersViewController *myorder=[[myordersViewController alloc]init];
+            myorder.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:myorder animated:YES];
+
+        }
             break;
         case 206://section 0 聊天样式按键
         {

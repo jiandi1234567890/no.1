@@ -47,6 +47,12 @@ typedef void(^Block) ();
     [myorders removeAllObjects];
     [shopingthings removeAllObjects];
     [self creatData];
+    if(myorders.count<1){
+        
+        [self showMessage:@"暂无订单"];
+    }
+    
+    
     [tableview reloadData];
 }
 
@@ -124,7 +130,7 @@ typedef void(^Block) ();
     NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
     NSString *ordernumberStr=Array[section];
     
-    
+    NSLog(@"%@",Array);
     view.backgroundColor=[UIColor whiteColor];
     UILabel *label1=[[UILabel alloc]init];
     label1.text=[NSString stringWithFormat:@"订单号：%@",ordernumberStr];
@@ -314,14 +320,49 @@ typedef void(^Block) ();
       [tableview deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
         
         [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"myorders"];
-        
         NSLog(@"我要退款");
-        [tableview reloadData];
+       
+
+        
+        NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
+        NSMutableArray *ordernumber=[NSMutableArray arrayWithArray:Array];
+        [ordernumber removeObject:Array[indexPath.section]];
+        [[NSUserDefaults standardUserDefaults]setObject:ordernumber forKey:@"ordernumber"];
+         [tableview reloadData];
         
     };
        [cell loaddataWith:[shopingthings objectAtIndex:indexPath.row]];
     return cell;
     
+}
+
+
+//按键提醒显示
+-(void)showMessage:(NSString *)message
+{
+    UIWindow * window = [UIApplication sharedApplication].keyWindow;
+    UIView *showview =  [[UIView alloc]init];
+    showview.backgroundColor = [UIColor blackColor];
+    showview.alpha = 0.8f;
+    showview.layer.cornerRadius = 5.0f;
+    showview.layer.masksToBounds = YES;
+    [window addSubview:showview];
+    
+    UILabel *label = [[UILabel alloc]init];
+    CGSize LabelSize=[message boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 999) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:20]} context:nil].size;
+    label.text = message;
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:16];
+    
+    showview.frame = CGRectMake(20, ([UIScreen mainScreen].bounds.size.height)/2,[UIScreen mainScreen].bounds.size.width-40, LabelSize.height+10);
+    label.frame = CGRectMake((CGRectGetMaxX(showview.frame)-LabelSize.width)/2, 5, LabelSize.width, LabelSize.height);
+    
+    [showview addSubview:label];
+    [UIView animateWithDuration:2 animations:^{showview.alpha=0.0f;}    completion:^(BOOL finished) {
+        [showview removeFromSuperview];
+    }];
 }
 
 

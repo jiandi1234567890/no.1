@@ -146,7 +146,6 @@
 		D81591DC1CAA858D0090A993 /* messageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D81591DB1CAA858D0090A993 /* messageViewController.m */; };
 		D824CFB91CCF1D63005FF9B1 /* confirmorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D824CFB81CCF1D63005FF9B1 /* confirmorderViewController.m */; };
 		D836D1301CD1F60000D38CBF /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D836D12F1CD1F60000D38CBF /* back.png */; };
-		D836D1341CD2079600D38CBF /* myorderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D836D1331CD2079600D38CBF /* myorderTableViewCell.m */; };
 		D849B8EA1CCDA8B300414E4E /* shoppingcartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D849B8E51CCDA8B300414E4E /* shoppingcartModel.m */; };
 		D849B8EB1CCDA8B300414E4E /* shoppingcartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D849B8E71CCDA8B300414E4E /* shoppingcartTableViewCell.m */; };
 		D849B8EC1CCDA8B300414E4E /* shoppingcartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D849B8E91CCDA8B300414E4E /* shoppingcartViewController.m */; };
@@ -161,6 +160,7 @@
 		D849B9051CCDE28E00414E4E /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = D849B9041CCDE28E00414E4E /* area.plist */; };
 		D849B9081CCE09A800414E4E /* addressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D849B9071CCE09A800414E4E /* addressModel.m */; };
 		D849B90B1CCE0E6F00414E4E /* addressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D849B90A1CCE0E6F00414E4E /* addressTableViewCell.m */; };
+		D8649C611CD82E980066621A /* mymoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8649C601CD82E980066621A /* mymoneyViewController.m */; };
 		D879F0EE1CA95CD2004E15FE /* mainCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D879F0ED1CA95CD2004E15FE /* mainCollectionViewCell.m */; };
 		D87EB7461CAAB742007A0E81 /* labelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D87EB7451CAAB742007A0E81 /* labelCollectionViewCell.m */; };
 		D89F24221CBD1D9C0005B018 /* findcodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89F24211CBD1D9C0005B018 /* findcodeViewController.m */; };
@@ -353,8 +353,6 @@
 		D824CFB71CCF1D63005FF9B1 /* confirmorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = confirmorderViewController.h; sourceTree = "<group>"; };
 		D824CFB81CCF1D63005FF9B1 /* confirmorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = confirmorderViewController.m; sourceTree = "<group>"; };
 		D836D12F1CD1F60000D38CBF /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
-		D836D1321CD2079600D38CBF /* myorderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = myorderTableViewCell.h; sourceTree = "<group>"; };
-		D836D1331CD2079600D38CBF /* myorderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = myorderTableViewCell.m; sourceTree = "<group>"; };
 		D849B8E41CCDA8B300414E4E /* shoppingcartModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shoppingcartModel.h; sourceTree = "<group>"; };
 		D849B8E51CCDA8B300414E4E /* shoppingcartModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shoppingcartModel.m; sourceTree = "<group>"; };
 		D849B8E61CCDA8B300414E4E /* shoppingcartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shoppingcartTableViewCell.h; sourceTree = "<group>"; };
@@ -379,6 +377,8 @@
 		D849B9071CCE09A800414E4E /* addressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressModel.m; sourceTree = "<group>"; };
 		D849B9091CCE0E6F00414E4E /* addressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addressTableViewCell.h; sourceTree = "<group>"; };
 		D849B90A1CCE0E6F00414E4E /* addressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addressTableViewCell.m; sourceTree = "<group>"; };
+		D8649C5F1CD82E980066621A /* mymoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mymoneyViewController.h; sourceTree = "<group>"; };
+		D8649C601CD82E980066621A /* mymoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mymoneyViewController.m; sourceTree = "<group>"; };
 		D879F0EC1CA95CD2004E15FE /* mainCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainCollectionViewCell.h; sourceTree = "<group>"; };
 		D879F0ED1CA95CD2004E15FE /* mainCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mainCollectionViewCell.m; sourceTree = "<group>"; };
 		D87EB7441CAAB742007A0E81 /* labelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = labelCollectionViewCell.h; sourceTree = "<group>"; };
@@ -717,8 +717,6 @@
 		D836D1311CD206E100D38CBF /* myorder */ = {
 			isa = PBXGroup;
 			children = (
-				D836D1321CD2079600D38CBF /* myorderTableViewCell.h */,
-				D836D1331CD2079600D38CBF /* myorderTableViewCell.m */,
 				D8D658BF1CB3484A003A6611 /* myordersViewController.h */,
 				D8D658C01CB3484A003A6611 /* myordersViewController.m */,
 			);
@@ -761,6 +759,8 @@
 				D8D4960D1CBB4F6900ED7ACD /* customer2TableViewCell.m */,
 				D8F9711E1CBC86D60075891A /* customer3TableViewCell.h */,
 				D8F9711F1CBC86D60075891A /* customer3TableViewCell.m */,
+				D8649C5F1CD82E980066621A /* mymoneyViewController.h */,
+				D8649C601CD82E980066621A /* mymoneyViewController.m */,
 				D8F7C9ED1CCF4F8700F9E21A /* helpViewController.h */,
 				D8F7C9EE1CCF4F8700F9E21A /* helpViewController.m */,
 				D8F971221CBC95160075891A /* signoutTableViewCell.h */,
@@ -1099,7 +1099,6 @@
 				D8F7C9F51CD082F100F9E21A /* ordersettlementTableViewCell.m in Sources */,
 				D849B8EA1CCDA8B300414E4E /* shoppingcartModel.m in Sources */,
 				D8D4960B1CBB30D300ED7ACD /* customer1TableViewCell.m in Sources */,
-				D836D1341CD2079600D38CBF /* myorderTableViewCell.m in Sources */,
 				D89F24221CBD1D9C0005B018 /* findcodeViewController.m in Sources */,
 				D8D658C41CB360BE003A6611 /* DescriptionsViewController.m in Sources */,
 				D824CFB91CCF1D63005FF9B1 /* confirmorderViewController.m in Sources */,
@@ -1117,6 +1116,7 @@
 				D81591DC1CAA858D0090A993 /* messageViewController.m in Sources */,
 				D8B9E5751CD352D10030BD59 /* mycollectionViewController.m in Sources */,
 				D809D3BA1CA8F00E00E5685E /* activityViewController.m in Sources */,
+				D8649C611CD82E980066621A /* mymoneyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
