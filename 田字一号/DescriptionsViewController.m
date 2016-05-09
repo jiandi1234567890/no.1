@@ -9,7 +9,10 @@
 #import "DescriptionsViewController.h"
 #import "shoppingcartViewController.h"
 #import "confirmorderViewController.h"
+#import "shareViewController.h"
 #import "shoppingcartModel.h"
+#import "XRCarouselView.h"
+#import "UIView+SDAutoLayout.h"
 
 
 
@@ -25,6 +28,14 @@
 @end
 
 @implementation DescriptionsViewController
+
+-(void)sharebuttonClick
+{
+    shareViewController *shareVC=[[shareViewController alloc]init];
+    shareVC.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:shareVC animated:YES];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,11 +66,54 @@
     self.navigationItem.backBarButtonItem = item;
     //更改子视图title颜色
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+
+    
+    UIScrollView *mainscrollview=[[UIScrollView alloc]init];
+    mainscrollview.backgroundColor=[UIColor whiteColor];
+    mainscrollview.contentSize=CGSizeMake(self.view.frame.size.width, 2280);
+    [self.view addSubview:mainscrollview];
+ 
+ //展示轮播图
+  NSArray *arr3 = @[[UIImage imageNamed:@"pic_cpnr2.jpg"],[UIImage imageNamed:@"pic_goodscont1.jpg"], [UIImage imageNamed:@"pic_goodscont2.jpg"],[UIImage imageNamed:@"pic_cpnr3.jpg"]];
     
     
+    XRCarouselView *xrcview=[[XRCarouselView alloc]init];
+    xrcview.imageArray=arr3;
+    [xrcview setPageColor:[UIColor whiteColor] andCurrentPageColor:[UIColor greenColor]];
+    xrcview.changeMode=ChangeModeDefault;
+    [mainscrollview addSubview:xrcview];
+    
+    
+//分享栏
+    UIImageView *imageview1=[[UIImageView alloc]init];
+    imageview1.image=[UIImage imageNamed:@"all1.png"];
+    [mainscrollview addSubview:imageview1];
+    
+    UIButton *sharebutton=[UIButton buttonWithType:UIButtonTypeCustom];
+    sharebutton.backgroundColor=[UIColor whiteColor];
+    [sharebutton setTitle:@"分享送积分" forState:UIControlStateNormal];
+    sharebutton.titleLabel.font=[UIFont systemFontOfSize:14];
+    [sharebutton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [sharebutton setImage:[UIImage imageNamed:@"icon_share.png"] forState:UIControlStateNormal];
+    [sharebutton addTarget:self action:@selector(sharebuttonClick) forControlEvents:UIControlEventTouchUpInside];
+    sharebutton.titleEdgeInsets=UIEdgeInsetsMake(0, -sharebutton.imageView.intrinsicContentSize.width, -sharebutton.imageView.intrinsicContentSize.height, 0);
+    sharebutton.imageEdgeInsets=UIEdgeInsetsMake(-sharebutton.titleLabel.intrinsicContentSize.height-20, 0, 0, -sharebutton.titleLabel.intrinsicContentSize.width);
+    [mainscrollview addSubview:sharebutton];
+    
+    
+    
+//参数栏
+    UIImageView *imageview2=[[UIImageView alloc]init];
+    imageview2.image=[UIImage imageNamed:@"all4.png"];
+    [mainscrollview addSubview:imageview2];
+    
+    
+ //按键上灰色横条
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight-51-64, ScreenWidth, 1.5)];
     view.backgroundColor=[UIColor grayColor];
     [self.view addSubview:view];
+    
+   
     
 //首页按键
     UIButton *homebutton=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -125,6 +179,36 @@
     [self.view addSubview:buyitbutton];
 
     
+    mainscrollview.sd_layout
+    .topSpaceToView(self.view,0)
+    .bottomSpaceToView(view,0)
+    .rightSpaceToView(self.view,0)
+    .leftSpaceToView(self.view,0);
+    
+    
+    xrcview.sd_layout
+    .topSpaceToView(mainscrollview,0)
+    .rightSpaceToView(mainscrollview,0)
+    .leftSpaceToView(mainscrollview,0)
+    .heightIs(260);
+    
+    imageview1.sd_layout
+    .topSpaceToView(xrcview,0)
+    .rightSpaceToView(mainscrollview,90)
+    .leftSpaceToView(mainscrollview,0)
+    .heightIs(120);
+    
+    sharebutton.sd_layout
+    .topSpaceToView(xrcview,0)
+    .rightSpaceToView(mainscrollview,0)
+    .leftSpaceToView(imageview1,0)
+    .heightIs(120);
+    
+    imageview2.sd_layout
+    .topSpaceToView(sharebutton,0)
+    .rightSpaceToView(mainscrollview,0)
+    .leftSpaceToView(mainscrollview,0)
+    .heightIs(1900);
     
 }
 
@@ -183,8 +267,7 @@
 -(void)putItinshoppingcartClick
 
 {
-    
-    
+
     NSInteger number=[[NSUserDefaults standardUserDefaults]integerForKey:@"addshoppingcart"];
     if(number){
         number+=1;
@@ -211,7 +294,7 @@
         
         shoppingcartModel *model = [[shoppingcartModel alloc]init];
         
-        model.namestr = @"田字一号筒骨";
+        model.namestr = @"田字一号龙骨";
         model.number =1;
         //model.pricestr = [NSString stringWithFormat:@"¥ 23.00\nX %ld",(long)model.number];
         model.imagename =@"pic_tj1.jpg";

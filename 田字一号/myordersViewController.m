@@ -165,14 +165,14 @@ typedef void(^Block) ();
     label2.sd_layout
     .topSpaceToView(labelline,0)
     .rightSpaceToView(view,10)
-    .widthIs(80)
+    .widthIs(70)
     .heightIs(45);
     
     
     label1.sd_layout
     .topSpaceToView(labelline,0)
     .rightSpaceToView(label2,0)
-    .leftSpaceToView(view,5)
+    .leftSpaceToView(view,3)
     .heightIs(45);
     
     labelline2.sd_layout
@@ -310,9 +310,12 @@ typedef void(^Block) ();
     cell.cutnumbutton.hidden=YES;
     cell.numlabel.hidden=YES;
     
+    
     //选择回调
     myblock=^(){
-        NSArray *array=[NSArray arrayWithArray:myorders[indexPath.section]];
+        NSLog(@"我要退款");
+        
+    NSArray *array=[NSArray arrayWithArray:myorders[indexPath.section]];
         
         [myorders removeObject:array];
         
@@ -321,12 +324,9 @@ typedef void(^Block) ();
       [tableview deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
         
         [[NSUserDefaults standardUserDefaults]setObject:data forKey:@"myorders"];
-        NSLog(@"我要退款");
+        
        
 
-        
-//        NSArray *Array=[[NSUserDefaults standardUserDefaults]arrayForKey:@"ordernumber"];
-//        NSMutableArray *ordernumber=[NSMutableArray arrayWithArray:Array];
         [ordernumber removeObject:ordernumber[indexPath.section]];
         NSArray *Array=[NSArray arrayWithArray:ordernumber];
         [[NSUserDefaults standardUserDefaults]setObject:Array forKey:@"ordernumber"];

@@ -106,10 +106,6 @@
     window.rootViewController=tabBar;
     
     
-
-    
-    
-    
 }
 
 

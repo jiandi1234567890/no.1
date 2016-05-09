@@ -606,6 +606,7 @@
                 break;
             case 1:
             {
+                
                 shareViewController *shareVC=[[shareViewController alloc]init];
                 shareVC.hidesBottomBarWhenPushed=YES;
                 [self.navigationController pushViewController:shareVC animated:YES];
@@ -615,27 +616,48 @@
             case 2:
             {
                 NSLog(@"我的订单");
-                myordersViewController *moVC=[[myordersViewController alloc]init];
-                moVC.hidesBottomBarWhenPushed=YES;
-                [self.navigationController pushViewController:moVC animated:YES];
-            }
+                NSInteger denglu=[[NSUserDefaults standardUserDefaults] integerForKey:@"login"];
+                if(denglu==100){
+                    myordersViewController *moVC=[[myordersViewController alloc]init];
+                    moVC.hidesBottomBarWhenPushed=YES;
+                    [self.navigationController pushViewController:moVC animated:YES];
+                }else{
+                    [self.tabBarController setSelectedIndex:4];
+                }
+
+                
+                          }
               
                 break;
             case 3:
             {
                 NSLog(@"收藏夹");
-                mycollectionViewController *collectionVC=[[mycollectionViewController alloc]init];
-                collectionVC.hidesBottomBarWhenPushed=YES;
-                [self.navigationController pushViewController:collectionVC animated:YES];
+                NSInteger denglu=[[NSUserDefaults standardUserDefaults] integerForKey:@"login"];
+                if(denglu==100){
+                    mycollectionViewController *collectionVC=[[mycollectionViewController alloc]init];
+                    collectionVC.hidesBottomBarWhenPushed=YES;
+                    [self.navigationController pushViewController:collectionVC animated:YES];
+                    
+                }else{
+                    [self.tabBarController setSelectedIndex:4];
+                }
+
                 
-            }
+                           }
                 break;
             case 4:
             {
                 NSLog(@"账户充值");
-                mymoneyViewController *myVC=[[mymoneyViewController alloc]init];
-                myVC.hidesBottomBarWhenPushed=YES;
-                [self.navigationController pushViewController:myVC animated:YES];
+                NSInteger denglu=[[NSUserDefaults standardUserDefaults] integerForKey:@"login"];
+                if(denglu==100){
+                    mymoneyViewController *myVC=[[mymoneyViewController alloc]init];
+                    myVC.hidesBottomBarWhenPushed=YES;
+                    [self.navigationController pushViewController:myVC animated:YES];
+                }else{
+                    [self.tabBarController setSelectedIndex:4];
+                }
+
+               
                 
                 
             }

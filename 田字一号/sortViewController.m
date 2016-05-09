@@ -9,7 +9,7 @@
 #import "sortViewController.h"
 #import "leftTableViewCell.h"
 #import "rightCollectionViewCell.h"
-#import "DescriptionsViewController.h"
+#import "searchViewController.h"
 #define ScreenWidth  [UIScreen mainScreen].bounds.size.width
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 @interface sortViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -278,7 +278,7 @@
 {
    
    
-        DescriptionsViewController *desVC=[[DescriptionsViewController alloc]init];
+        searchViewController *desVC=[[searchViewController alloc]init];
         desVC.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:desVC animated:YES];
         
